@@ -3,6 +3,7 @@ import Header from "../Components/Header";
 import Carousel from "../Components/Carousel";
 import Search from "../Components/Search";
 import TestimoniesCarousel from "../Components/TestimoniesCarousel";
+import Footer from "../Components/Footer";
 
 import bannerWeb from "../Videos/bannerWeb.mp4"
 
@@ -55,8 +56,7 @@ export default function HomePage() {
         <section>
             <TestimoniesCarousel title={"testimonios"}/>
         </section>
-       
-
+        <Footer/>
         </>
     )
 }
