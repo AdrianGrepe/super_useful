@@ -1,0 +1,33 @@
+.Header {
+    position: fixed;
+    z-index: 100;
+}
+
+.ImageContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background-color: #313131;
+}
+
+.LinksContainer {
+    width: 100vw;
+    background-color: #313131;
+    height: 50px;
+}
+
+.Links {
+    max-width: 1000px;
+    display: flex;
+    justify-content: space-evenly;
+    margin: auto;
+    height: 100%;
+    align-items: center;
+    font-weight: 500;
+}
+
+.HeaderLink {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+}

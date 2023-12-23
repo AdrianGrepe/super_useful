@@ -1,0 +1,85 @@
+.bannerContainer {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    background-color: #313131;
+    margin-top: 200px;
+}
+
+.SalesCounter {
+    height: 175px;
+    width: 100vw;
+    background-color: #e1530f;
+}
+
+.SalesCounterContent {
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    justify-content: space-evenly;
+    height: 100%;
+    align-items: center;
+}
+
+.SalesCounterContent h3{
+    color: white;
+    text-transform: capitalize;
+}
+
+.salesCounter {
+    display: flex;
+    width: 35%;
+    justify-content: space-between;
+}
+
+.salesCounter span {
+    /* width: 30px;
+    height: 45px; */
+    padding: 15px 10px;
+    background-color: white;
+    font-size: 48px;
+    font-weight: 900;
+    border-radius: 10px;
+}
+
+.Wholesales {
+    width: 100vw;
+    height: 70vh;
+}
+
+.WholesalesContent{
+    max-width: 1200px;
+    margin: auto;
+    position: relative;
+    height: inherit;
+}
+
+.WholesalesText {
+    position: absolute;
+    width: 40%;
+    background-color: white;
+    border-radius: 30px;
+    padding: 10px 30px;
+    top: 15%;
+    right: 10%;
+}
+
+.WholesalesText h2 {
+    text-transform: uppercase;
+    margin: 0;
+    font-size: 38px;
+   
+}
+
+.WholesalesImage {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+   
+}
+
+.WholesalesImage img {
+    border-radius: 30px;
+    border: 3px solid white;
+}
