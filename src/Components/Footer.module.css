@@ -1,0 +1,49 @@
+.Footer {
+    height: 200px;
+    background-color: #313131;
+}
+
+.FooterContent {
+    max-width: 1200px;
+    display: flex;
+    justify-content: space-around;
+    height: 100%;
+    align-items: center;
+    margin: auto;
+}
+
+.ContactAndCopyright {
+    display: block;
+}
+
+.SocialMedia {
+    display: flex;
+    color: #e1530f;
+    text-transform: uppercase;
+    justify-content: space-between;
+    font-weight: 500;
+    align-items: center;
+}
+
+.SocialMedia svg {
+    width: 22px;
+    fill: #e1530f;
+    
+}
+
+.Email, .Phone, .Copyright {
+    font-weight: 500;
+    text-transform: uppercase;
+    color: white;
+}
+
+.BrandingAndTerms{
+    display:grid;
+    justify-items: center;
+}
+
+.BrandingAndTerms a {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: white;
+}

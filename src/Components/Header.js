@@ -20,7 +20,13 @@ export default function Header(){
                     inicio
                 </Link>
                 <Link
-                    to={`/`}
+                    to={`/nosotros`}
+                    className={classes.HeaderLink}
+                >
+                    nosotros
+                </Link>
+                <Link
+                    to={`/tienda`}
                     className={classes.HeaderLink}
                 >
                     tienda
