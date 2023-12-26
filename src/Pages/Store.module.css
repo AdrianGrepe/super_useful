@@ -1,7 +1,29 @@
 .PaymentMethods {
     margin-top: 200px;
+    background-color: white;
 }
 
 .PaymentMethodsContent{
-    background-color: white;
+    display: flex;
+    max-width: 1200px;
+    margin: auto;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.Shipments {
+    background-color: black;
+}
+
+.ShipmentsContent{
+    background-color: #313131;
+    color: white;
+    max-width: 1200px;
+    border-radius: 15px;
+    margin: auto;
+    display: flex;
+}
+
+.ShipmentsContent h3{
+   color: #e1530f;
 }

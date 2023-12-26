@@ -172,7 +172,7 @@ export default function Store() {
             </div>
         </section>
         <section className={classes.Shipments}>
-            <div>
+            <div className={classes.ShipmentsContent}>
                 <div>
                     <h3>envíos</h3>
                 </div>
