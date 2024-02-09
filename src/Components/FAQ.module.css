@@ -1,0 +1,55 @@
+.FAQContainer{
+    background-color: #313131;
+    padding: 5%;
+    position: relative;
+}
+
+.FAQTitle {
+    position: absolute;
+    width:fit-content;
+    background-color: #e1530f;
+    border-radius: 15px;
+    top: calc(-68px/2);
+    right: calc((100vw - 360px)/2);
+}
+
+.FAQTitle h2 {
+    margin: 0;
+    padding: 20px 30px;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 900;
+
+}
+
+.FAQElement {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.Question {
+    color: white;
+    display: flex;
+    border: 1px solid white;
+    justify-content: space-between;
+    padding: 10px 30px;
+    border-radius: 5px;
+    background-color: black;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.Question button {
+    background-color: transparent;
+    border: none;
+}
+
+.Answer {
+    color: white;
+    padding:  0px 30px ;
+}
+
+.Answer p{
+    margin: 0%;
+    margin-bottom: 30px;
+}

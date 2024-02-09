@@ -8,7 +8,7 @@ import classes from './TestimoniesCarousel.module.css'
 const TestimoniesCarousel = ({
     title=""
 }) => {
-    const [feedback, setFeedback] = useState([])
+    const [feedback, setFeedback] = useState([{},{}])
     const [totalSlides, setTotalSlides] = useState()
     const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -69,22 +69,22 @@ const TestimoniesCarousel = ({
     });
 
     useEffect(() => {
-        fetch(`https://accounting.linarys.com/v1/comments/`, { 
-            method: 'GET' 
-        })
-            .then(data => data.json())
-            .then(data => {
-                setFeedback(
-                    data.users
-                ); 
-                setTotalSlides(data.users.length)
+        // fetch(`https://accounting.linarys.com/v1/comments/`, { 
+        //     method: 'GET' 
+        // })
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         setFeedback(
+        //             data.users
+        //         ); 
+                setTotalSlides(feedback.length)
                 setFeedback((prevState, n=0) => [
                     ...prevState.map(
                         u => {return {...u, "comment_id":n++}}
                     )
                 ])
             
-            })
+        //     })
             
     }, [])
 
@@ -97,7 +97,8 @@ const TestimoniesCarousel = ({
                 <div className={classes.CarouselItemContent}  >
                     {/* <img ></img>  */}
                     <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus convallis ac odio at venenatis. Donec scelerisque finibus venenatis. Sed sed libero non velit pellentesque rhoncus. In fringilla sagittis vestibulum
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus convallis ac odio at venenatis. 
+                    Donec scelerisque finibus venenatis. Sed sed libero non velit pellentesque rhoncus. In fringilla sagittis vestibulum
                     </p>
 
                 </div>

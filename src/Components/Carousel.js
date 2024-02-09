@@ -3,13 +3,23 @@ import React, {useEffect, useState} from 'react';
 import classes from './Carousel.module.css'
 
 
-import bannerWeb from "../Videos/bannerWeb.mp4"
+// import bannerWeb from "../Videos/bannerWeb.mp4"
+
+import video1 from "../Videos/video1.mp4"
+import video2 from "../Videos/video2.mp4"
 
 
 const Carousel = ({
     title=""
 }) => {
-    const [feedback, setFeedback] = useState([])
+    const [feedback, setFeedback] = useState([
+        {
+            video:video1
+        },
+        {
+            video:video2
+        }
+    ])
     const [totalSlides, setTotalSlides] = useState()
     const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -70,22 +80,22 @@ const Carousel = ({
     });
 
     useEffect(() => {
-        fetch(`https://accounting.linarys.com/v1/comments/`, { 
-            method: 'GET' 
-        })
-            .then(data => data.json())
-            .then(data => {
-                setFeedback(
-                    data.users
-                ); 
-                setTotalSlides(data.users.length)
+        // fetch(`https://accounting.linarys.com/v1/comments/`, { 
+        //     method: 'GET' 
+        // })
+        //     .then(data => data.json())
+        //     .then(data => {
+        //         setFeedback(
+        //             data.users
+        //         ); 
+                setTotalSlides(feedback.length)
                 setFeedback((prevState, n=0) => [
                     ...prevState.map(
                         u => {return {...u, "comment_id":n++}}
                     )
                 ])
             
-            })
+            // })
             
     }, [])
 
@@ -95,9 +105,10 @@ const Carousel = ({
 
         return (
             <div className={classes.CarouselItem}>
+               
                 <div className={classes.CarouselItemContent}  >
-                    <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay={false} controls loop={false}>
-                        <source src={bannerWeb} type="video/mp4"/>
+                    <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay={true} controls loop={false}>
+                        <source src={feedback.video} type="video/mp4"/>
                         Your browser does not support the video tag.
                     </video>                    
                 </div>
@@ -123,7 +134,7 @@ const Carousel = ({
             >
                 {
                     feedback.map(feedback => 
-                        <Comment id={feedback.comment_id} picture={feedback.picture} name={feedback.name} feedback={feedback.feedback} stars={feedback.stars}/>
+                        <Comment id={feedback.comment_id} picture={feedback.picture} name={feedback.name} feedback={feedback} stars={feedback.stars}/>
                     )
                 }
             </div>

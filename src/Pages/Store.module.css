@@ -13,6 +13,7 @@
 
 .Shipments {
     background-color: black;
+    padding: 5%;
 }
 
 .ShipmentsContent{
@@ -22,8 +23,19 @@
     border-radius: 15px;
     margin: auto;
     display: flex;
+    padding: 30px;
 }
 
-.ShipmentsContent h3{
+.ShipmentsTitle {
+    width: 30%;
+}
+
+.ShipmentsTitle h3{
    color: #e1530f;
+   text-transform: uppercase;
+   padding: 15px;
+}
+
+.ShipmentsText {
+    width: 70%;
 }

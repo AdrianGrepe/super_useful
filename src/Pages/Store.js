@@ -2,6 +2,7 @@ import React from "react";
 
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import FAQ from "../Components/FAQ";
 
 
 import classes from './Store.module.css'
@@ -173,10 +174,10 @@ export default function Store() {
         </section>
         <section className={classes.Shipments}>
             <div className={classes.ShipmentsContent}>
-                <div>
+                <div className={classes.ShipmentsTitle}>
                     <h3>envíos</h3>
                 </div>
-                <div>
+                <div className={classes.ShipmentsText}>
                     <p>
                         Proin suscipit euismod nunc ac dignissim. Phasellus vel ipsum porta, interdum odio sit amet, 
                         efficitur turpis. Sed quam lectus, dapibus sit amet laoreet in, commodo et nibh. Aliquam
@@ -190,6 +191,7 @@ export default function Store() {
                 </div>
             </div>
         </section>
+        <FAQ/>
         <Footer/>
         </>
     )

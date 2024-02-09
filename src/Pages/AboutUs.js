@@ -3,8 +3,9 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 
 import classes from './AboutUs.module.css'
-import WholesalesBanner from '../Images/WholesalesBanner.png';
-import AboutUs1 from '../Images/AboutUs1.jpg';
+// import WholesalesBanner from '../Images/WholesalesBanner.png';
+import AboutUSBanner from '../Images/aboutUsBanner.png';
+import AboutUs1 from '../Images/AboutUs1.png';
 import AboutUs2 from '../Images/AboutUs2.jpeg';
 import AboutUs3 from '../Images/AboutUs3.jpeg'
 
@@ -13,7 +14,7 @@ export default function AboutUs() {
         <>
         <Header/>
         <section className={classes.Hero}>
-            <img src={WholesalesBanner}></img>
+            <img src={AboutUSBanner}></img>
         </section>
         <section className={classes.AboutUs}>
             <div className={classes.AboutUsTitle}>
@@ -33,8 +34,8 @@ export default function AboutUs() {
                         </p>
                     </div>
                 </div>
-                <div className={classes.History}>
-                    <div className={classes.Image}>
+                <div style={{flexFlow:'row-reverse'}} className={classes.History}>
+                    <div style={{padding:'5% 5% 5% 0%'}} className={classes.Image}>
                         <img src={AboutUs2}/>
                     </div>
                     <div className={classes.Text}>

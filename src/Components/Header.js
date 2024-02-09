@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LogoHeader from '../Images/LogoHeader.png';
 
 import classes from './Header.module.css'
@@ -6,6 +6,13 @@ import classes from './Header.module.css'
 import { Link } from 'react-router-dom';
 
 export default function Header(){
+
+    const [currentPage, setCurrentPage] = useState()
+
+    useEffect(() => {
+        
+    }, [])
+
     return(
         <header className={classes.Header}>
         <div className={classes.ImageContainer}>
@@ -32,7 +39,7 @@ export default function Header(){
                     tienda
                 </Link>
                 <Link
-                    to={`/`}
+                    to={`/mayoreo`}
                     className={classes.HeaderLink}
                 >
                     mayoreo
