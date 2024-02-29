@@ -1,0 +1,48 @@
+.JoinSuperUsefull {
+    margin-top: 200px;
+    background-color: #313131;
+    position: relative;
+    padding-top: 75px;
+    margin-bottom: 100px;
+}
+
+.JoinSuperUsefullTitle {
+    width: 300px;
+    background-color: #e1530f;
+    color: white;
+    border-radius: 15px;
+    text-transform: uppercase;
+    position: absolute;
+    right: calc((100vw - 300px)/2);
+    top: calc(75px/2);
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.JoinSuperUsefullTitle h1 {
+    margin: 0;
+}
+
+
+.Advantages {
+    background-color: black;
+    display: flex;
+    color: white;
+    max-width: 1200px;
+    margin: auto;
+    padding: 50px 15px 15px 30px;
+    align-items: center;
+    border-radius: 15px;
+}
+
+.Advantages h2 {
+    color: #e1530f;
+    text-transform: uppercase;
+}
+
+.AdvantagesImg img{
+    margin-right: 30px;
+    border-radius: 15px;
+}

@@ -1,25 +1,14 @@
 import React, {useEffect, useState} from 'react';
 
-import classes from './Carousel.module.css'
+import classes from './TestimoniesCarousel.module.css'
 
 
-// import bannerWeb from "../Videos/bannerWeb.mp4"
-
-import video1 from "../Videos/video1.mp4"
-import video2 from "../Videos/video2.mp4"
 
 
-const Carousel = ({
+const CurrentTeamCarousel = ({
     title=""
 }) => {
-    const [feedback, setFeedback] = useState([
-        {
-            video:video1
-        },
-        {
-            video:video2
-        }
-    ])
+    const [feedback, setFeedback] = useState([])
     const [totalSlides, setTotalSlides] = useState()
     const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -80,52 +69,53 @@ const Carousel = ({
     });
 
     useEffect(() => {
-        // fetch(`https://accounting.linarys.com/v1/comments/`, { 
-        //     method: 'GET' 
-        // })
-        //     .then(data => data.json())
-        //     .then(data => {
-        //         setFeedback(
-        //             data.users
-        //         ); 
-                setTotalSlides(feedback.length)
+        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/teams?populate=*`, { 
+            method: 'GET' 
+        })
+            .then(data => data.json())
+            .then(data => {
+                setFeedback(
+                    data.data
+                ); 
+                setTotalSlides(Object.keys(data.data).length)
                 setFeedback((prevState, n=0) => [
                     ...prevState.map(
                         u => {return {...u, "comment_id":n++}}
                     )
                 ])
             
-            // })
+            })
             
     }, [])
 
     
-    const Comment = ({ picture, name, stars, feedback}) => {
+    const Comment = ({ url, name, role }) => {
         
 
         return (
             <div className={classes.CarouselItem}>
-               
                 <div className={classes.CarouselItemContent}  >
-                    <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay={false} controls loop={false}>
-                        <source src={feedback.video} type="video/mp4"/>
-                        Your browser does not support the video tag.
-                    </video>                    
+                    <img draggable="false" style={{borderRadius:'15px', marginBottom:'15px'}} src={`${url}`} />
+                    <p style={{color:'#e1530f', fontWeight:'600', margin:'0'}}>{name}</p>
+                    <p style={{color:'white', fontStyle:'italic', margin:'0'}}>{role}</p>
                 </div>
             </div>
         )
     }
 
 
-
     return(
         <section className={classes.Carousel}>
-            <h2>{title}</h2>
+            {/* <div className={classes.CarouselTitle}>
+                <h2>{title}</h2>
+            </div> */}
+            
             <div 
                 className={classes.ContainerCarousel}
                 style={{
                     width:`calc(${parseInt(totalSlides)}*100%)`,
-                    transform:`translateX(calc(${parseInt(currentSlide)}/${parseInt(totalSlides)}*-100%))`
+                    transform:`translateX(calc(${parseInt(currentSlide)}/${parseInt(totalSlides)}*-100%))`,
+                    backgroundColor:'#313131'
                 }}
                 onMouseDown={lock3}
                 onTouchStart={lock3}
@@ -134,14 +124,15 @@ const Carousel = ({
             >
                 {
                     feedback.map(feedback => 
-                        <Comment id={feedback.comment_id} picture={feedback.picture} name={feedback.name} feedback={feedback} stars={feedback.stars}/>
+                        <Comment url={feedback.attributes.photo.data.attributes.url} id={feedback.comment_id} name={feedback.attributes.name} role={feedback.attributes.role} />
                     )
                 }
             </div>
             <ol 
                 className={classes.CarouselIndicators}
                 style={{
-                    right:`calc((100vw - ${totalSlides}*60px)/2)`
+                    right:`calc((100vw - ${totalSlides}*60px)/2)`,
+                    display:'none'
                 }}
             >
             {
@@ -169,7 +160,7 @@ const Carousel = ({
                     
                 }} id='backwardButton' className='none' style={{opacity:currentSlide === 0 ?0: 1}}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M15.3547 4C15.4854 4 15.6161 4.03185 15.7337 4.10615C16.0212 4.27598 16.0866 4.61564 15.8775 4.84916L9.47354 12.0033L15.8775 19.1575C16.0866 19.391 16.0212 19.7306 15.7337 19.9005C15.4462 20.0703 15.0279 20.0172 14.8188 19.7837L8.12742 12.3111C7.95752 12.1307 7.95753 11.8759 8.12742 11.6849L14.8188 4.22289C14.9495 4.08491 15.1456 4 15.3416 4L15.3547 4Z" fill="#B66A00"/>
+                        <path d="M15.3547 4C15.4854 4 15.6161 4.03185 15.7337 4.10615C16.0212 4.27598 16.0866 4.61564 15.8775 4.84916L9.47354 12.0033L15.8775 19.1575C16.0866 19.391 16.0212 19.7306 15.7337 19.9005C15.4462 20.0703 15.0279 20.0172 14.8188 19.7837L8.12742 12.3111C7.95752 12.1307 7.95753 11.8759 8.12742 11.6849L14.8188 4.22289C14.9495 4.08491 15.1456 4 15.3416 4L15.3547 4Z" fill="#000"/>
                     </svg>
                 </button>
                 <button onClick={() => {
@@ -188,7 +179,7 @@ const Carousel = ({
                     
                 }} id='fordwardButton' className='none' style={{opacity:currentSlide === totalSlides -1 ?0: 1}}>
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8.64534 20C8.51465 20 8.38394 19.9682 8.26632 19.8938C7.9788 19.724 7.91343 19.3844 8.12254 19.1508L14.5265 11.9967L8.12254 4.84254C7.91344 4.60902 7.9788 4.26936 8.26632 4.09953C8.55384 3.9297 8.97207 3.98277 9.18118 4.21629L15.8726 11.6889C16.0425 11.8693 16.0425 12.1241 15.8726 12.3151L9.18118 19.7771C9.05049 19.9151 8.85442 20 8.65838 20L8.64534 20Z" fill="#B66A00"/>
+                        <path d="M8.64534 20C8.51465 20 8.38394 19.9682 8.26632 19.8938C7.9788 19.724 7.91343 19.3844 8.12254 19.1508L14.5265 11.9967L8.12254 4.84254C7.91344 4.60902 7.9788 4.26936 8.26632 4.09953C8.55384 3.9297 8.97207 3.98277 9.18118 4.21629L15.8726 11.6889C16.0425 11.8693 16.0425 12.1241 15.8726 12.3151L9.18118 19.7771C9.05049 19.9151 8.85442 20 8.65838 20L8.64534 20Z" fill="#000"/>
                     </svg>
                 </button>
                 
@@ -199,4 +190,4 @@ const Carousel = ({
     )
 }
 
-export default Carousel
+export default CurrentTeamCarousel

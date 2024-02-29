@@ -8,7 +8,7 @@ import classes from './TestimoniesCarousel.module.css'
 const TestimoniesCarousel = ({
     title=""
 }) => {
-    const [feedback, setFeedback] = useState([{},{}])
+    const [feedback, setFeedback] = useState([])
     const [totalSlides, setTotalSlides] = useState()
     const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -69,38 +69,35 @@ const TestimoniesCarousel = ({
     });
 
     useEffect(() => {
-        // fetch(`https://accounting.linarys.com/v1/comments/`, { 
-        //     method: 'GET' 
-        // })
-        //     .then(data => data.json())
-        //     .then(data => {
-        //         setFeedback(
-        //             data.users
-        //         ); 
-                setTotalSlides(feedback.length)
+        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/feedbacks?populate=*`, { 
+            method: 'GET' 
+        })
+            .then(data => data.json())
+            .then(data => {
+                console.log( typeof(data.data))
+                console.log( typeof(Object.entries(data.data) ))
+                setFeedback(
+                    data.data
+                ); 
+
+                setTotalSlides(Object.keys(data.data).length)
                 setFeedback((prevState, n=0) => [
                     ...prevState.map(
                         u => {return {...u, "comment_id":n++}}
                     )
                 ])
             
-        //     })
+            })
             
     }, [])
 
     
-    const Comment = ({ picture, name, stars, feedback}) => {
+    const Comment = ({ comment_id, url}) => {
         
-
         return (
-            <div className={classes.CarouselItem}>
-                <div className={classes.CarouselItemContent}  >
-                    {/* <img ></img>  */}
-                    <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus convallis ac odio at venenatis. 
-                    Donec scelerisque finibus venenatis. Sed sed libero non velit pellentesque rhoncus. In fringilla sagittis vestibulum
-                    </p>
-
+            <div  className={classes.CarouselItem}>
+                <div style={{height:'unset', display:'flex', justifyContent:'center'}} className={classes.CarouselItemContent}  >
+                    <img src={`${url}`} />
                 </div>
             </div>
         )
@@ -127,9 +124,11 @@ const TestimoniesCarousel = ({
             >
                 {
                     feedback.map(feedback => 
-                        <Comment id={feedback.comment_id} picture={feedback.picture} name={feedback.name} feedback={feedback.feedback} stars={feedback.stars}/>
+                        <Comment id={feedback.comment_id} url={feedback.attributes.feedbackImage.data.attributes.url}/>
+               
                     )
                 }
+
             </div>
             <ol 
                 className={classes.CarouselIndicators}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
@@ -8,6 +8,28 @@ import FAQ from "../Components/FAQ";
 import classes from './Store.module.css'
 
 export default function Store() {
+
+    const [FAQs, setFAQs] = useState() 
+    const [questions, setQuestions] = useState()
+    const [loadingContent, setIsLoadingContent] = useState()
+   
+
+    useEffect(() => {
+        setIsLoadingContent(true)
+        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/faq-stores?populate=*`, { 
+            'Content-Type': 'application/json' , method: 'GET' 
+            })
+            .then(data => data.json())
+            .then(data => {
+                setFAQs(data.data)
+                setQuestions(Object.keys(data.data).length)
+                setIsLoadingContent(false)
+            })
+    }, [])
+
+
+
+
     return(
         <>
         <Header/>
@@ -191,7 +213,8 @@ export default function Store() {
                 </div>
             </div>
         </section>
-        <FAQ/>
+        <FAQ FAQs={FAQs} loadingContent={loadingContent} />
+        
         <Footer/>
         </>
     )

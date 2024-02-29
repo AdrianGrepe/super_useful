@@ -1,4 +1,6 @@
 import React from "react";
+
+
 import Header from "../Components/Header";
 import Carousel from "../Components/Carousel";
 import Search from "../Components/Search";
@@ -12,6 +14,9 @@ import WholesalesBanner from '../Images/WholesalesBanner.png';
 import classes from './HomePage.module.css'
 
 export default function HomePage() {
+
+    
+    
     return (
         <>
         <Header/>
