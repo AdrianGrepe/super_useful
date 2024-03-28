@@ -83,3 +83,30 @@
     border-radius: 30px;
     border: 3px solid white;
 }
+
+@media screen and (max-width: 991px) {
+    .SalesCounterContent {
+        display: grid;
+        justify-content: center;
+       
+    }
+
+    .WholesalesText {
+        position: absolute;
+        width: 45%;
+        background-color: white;
+        border-radius: 30px;
+        padding: 10px 30px;
+        top: 15%;
+        right: calc((100vw - (45% + 60px)) /2)
+    }
+
+    .WholesalesImage {
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        align-items: center;
+        width: 90vw;
+       
+    }
+}

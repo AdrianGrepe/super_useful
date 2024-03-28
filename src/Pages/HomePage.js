@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 
 import Header from "../Components/Header";
@@ -15,13 +15,34 @@ import classes from './HomePage.module.css'
 
 export default function HomePage() {
 
-    
+    function createMarkup(str) {
+        return {__html: str};
+    }
+
+    const [loadingContent, setIsLoadingContent] = useState()
+    const [pageContent, setPageContent] = useState({})
+
+
+   
+
+    useEffect(() => {
+        setIsLoadingContent(true)
+        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/homepage?populate=*`, { 
+            'Content-Type': 'application/json' , method: 'GET' 
+            })
+            .then(data => data.json())
+            .then(data => {
+                setPageContent(data.data.attributes)
+                setIsLoadingContent(false)
+            })
+    }, [])
+
     
     return (
         <>
         <Header/>
         <section className={classes.bannerContainer}>
-            <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay controls loop={true}>
+            <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay loop controls=''>
                 <source src={bannerWeb} type="video/mp4"/>
                 Your browser does not support the video tag.
             </video>
@@ -35,7 +56,7 @@ export default function HomePage() {
         <section className={classes.SalesCounter} style={{height:'175px', width:'100vw', backgroundColor:'#e1530f'}}>
             <div className={classes.SalesCounterContent}>
                 <div>
-                    <h2 style={{color:'white', textTransform:'capitalize', fontSize:'36px'}}>nuestras ventas</h2>
+                    <h2 style={{color:'white', textTransform:'capitalize', fontSize:'36px', margin:'0'}}>nuestras ventas</h2>
                 </div>
                 <div className={classes.salesCounter} >
                     <span>0</span>

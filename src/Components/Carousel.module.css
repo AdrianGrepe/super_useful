@@ -67,3 +67,13 @@
     display: flex;
     justify-content: space-between;
 }
+
+@media screen and (max-width: 991px) {
+    .CarouselItemContent {
+        width: unset;
+    }
+
+    .ContainerCarousel {
+        height: 60vh;
+    }
+}

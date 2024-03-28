@@ -10,17 +10,43 @@ import { Link } from 'react-router-dom';
 export default function Header(){
 
     const [currentPage, setCurrentPage] = useState()
+    const [navbarOpen, setNavbarOpen] = useState(false)
+    const [menu_class, setMenuClass] = useState("menu hidden")
 
     let location = useLocation();
 
-    console.log(location.pathname)
+    const updateMenu = () => {
+        if(!navbarOpen) {
+            
+            setMenuClass("visible")
+            
+        }
+        else {
+            
+            setMenuClass("hidden")
+        }
+        setNavbarOpen(!navbarOpen)
+    }
 
     return(
         <header className={classes.Header}>
         <div className={classes.ImageContainer}>
             <img style={{}} src={LogoHeader } alt="HeaderLogo" />
         </div>
-        <div className={classes.LinksContainer}>
+        {
+                    window.innerWidth < 991
+                    ?
+                    
+                        <div onClick={updateMenu} className={classes.burgerButton}>
+                            <div className={classes.bar}></div>
+                            <div className={classes.bar}></div>
+                            <div className={classes.bar}></div>
+                        </div>
+                
+                    :
+                    null
+                }
+        <div className={`${classes.LinksContainer} ${navbarOpen ? classes.visible: classes.hidden}` }>
             <div className={classes.Links} >
                 <Link
                     to={`/`}
