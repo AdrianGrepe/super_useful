@@ -42,13 +42,13 @@ export default function HomePage() {
         <>
         <Header/>
         <section className={classes.bannerContainer}>
-            <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay loop controls=''>
+            <video style={{width:'100vw', maxWidth:'1200px' }} controlsList="nofullscreen" autoPlay loop controls=''>
                 <source src={bannerWeb} type="video/mp4"/>
                 Your browser does not support the video tag.
             </video>
         </section>
         <section>
-            <Carousel/>
+            <Carousel title="Conoce los productos Súper Útil"/>
         </section>
         <section>
             <Search/>
@@ -72,7 +72,7 @@ export default function HomePage() {
             <div className={classes.WholesalesContent}>
                 <div className={classes.WholesalesText}>
                     <h2>mayoreo</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus convallis ac odio at venenatis. Donec scelerisque finibus venenatis. Sed sed libero non velit pellentesque rhoncus. In fringilla sagittis vestibulum.</p>
+                    <div dangerouslySetInnerHTML={createMarkup(pageContent.wholesale_text)} />
                 </div>
                 <div className={classes.WholesalesImage}>
                     <img style={{}} src={WholesalesBanner} alt="WholesalesBanner" />

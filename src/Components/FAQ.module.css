@@ -53,3 +53,10 @@
     margin: 0%;
     margin-bottom: 30px;
 }
+
+@media screen and (max-width: 991px) {
+    .FAQContainer{
+        padding-top: 60px;
+    }
+}
+

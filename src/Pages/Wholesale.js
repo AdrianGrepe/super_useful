@@ -57,34 +57,57 @@ export default function Wholesale() {
             <div className={classes.AboutUsTitle}>
                 <h1>{pageContent.title}</h1>
             </div>
+
+
             <div className={classes.AboutUsContent}>
-                <div className={classes.History}>
-                    <div className={classes.Image}>
+
+                <div style={{position:'relative'}}>
+                    <div style={{position:'absolute'}} className={classes.ImageMobile}>
                         <img src={AboutUs1}/>
                     </div>
-                    <div className={classes.Text}>
-                        <h2>{pageContent.success_stories_title}</h2>
-                        <div dangerouslySetInnerHTML={createMarkup(pageContent.success_stories_text)} />
+                    <div className={classes.History}>
+                        <div className={classes.ImageDesktop}>
+                            <img src={AboutUs1}/>
+                        </div>
+                        <div className={classes.Text}>
+                            <h2>{pageContent.success_stories_title}</h2>
+                            <div dangerouslySetInnerHTML={createMarkup(pageContent.success_stories_text)} />
+                        </div>
                     </div>
                 </div>
-                <div style={{flexFlow:'row-reverse'}} className={classes.History}>
-                    <div style={{padding:'5% 5% 5% 0%'}} className={classes.Image}>
+
+                <div style={{position:'relative'}}>
+                    <div style={{position:'absolute'}} className={classes.ImageMobile}>
                         <img src={AboutUs2}/>
                     </div>
-                    <div className={classes.Text}>
-                        <h2>{pageContent.specialized_manufacturing_title}</h2>
-                        <div dangerouslySetInnerHTML={createMarkup(pageContent.specialized_manufacturing_text)} />
+                    <div style={{flexFlow:'row-reverse'}} className={classes.History}>
+                        <div style={{padding:'5% 5% 5% 0%'}} className={classes.ImageDesktop}>
+                            <img src={AboutUs2}/>
+                        </div>
+                        <div className={classes.Text}>
+                            <h2>{pageContent.specialized_manufacturing_title}</h2>
+                            <div dangerouslySetInnerHTML={createMarkup(pageContent.specialized_manufacturing_text)} />
+                        </div>
                     </div>
                 </div>
-                <div className={classes.History}>
-                    <div className={classes.Image}>
+                
+                <div style={{position:'relative'}}>
+                    <div style={{position:'absolute'}} className={classes.ImageMobile}>
                         <img src={AboutUs3}/>
                     </div>
-                    <div className={classes.Text}>
-                        <h2>{pageContent.benefits_title}</h2>
-                        <div dangerouslySetInnerHTML={createMarkup(pageContent.benefits_text)} />
+                    <div className={classes.History}>
+                        <div className={classes.ImageDesktop}>
+                            <img src={AboutUs3}/>
+                        </div>
+                        <div className={classes.Text}>
+                            <h2>{pageContent.benefits_title}</h2>
+                            <div dangerouslySetInnerHTML={createMarkup(pageContent.benefits_text)} />
+                        </div>
                     </div>
                 </div>
+                
+
+
             </div>
            
         </section>

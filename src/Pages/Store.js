@@ -4,18 +4,32 @@ import Header from "../Components/Header";
 import Footer from "../Components/Footer";
 import FAQ from "../Components/FAQ";
 
+import classes from './Store.module.css';
 
-import classes from './Store.module.css'
+import Shipments from '../Images/shipments.png';
 
 export default function Store() {
+
+    function createMarkup(str) {
+        return {__html: str};
+    }
 
     const [FAQs, setFAQs] = useState() 
     const [questions, setQuestions] = useState()
     const [loadingContent, setIsLoadingContent] = useState()
+    const [pageContent, setPageContent] = useState({})
    
 
     useEffect(() => {
         setIsLoadingContent(true)
+        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/store?populate=*`, { 
+            'Content-Type': 'application/json' , method: 'GET' 
+            })
+            .then(data => data.json())
+            .then(data => {
+                setPageContent(data.data.attributes)
+                setIsLoadingContent(false)
+            })
         fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/faq-stores?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
@@ -25,6 +39,7 @@ export default function Store() {
                 setQuestions(Object.keys(data.data).length)
                 setIsLoadingContent(false)
             })
+        
     }, [])
 
 
@@ -35,11 +50,11 @@ export default function Store() {
         <Header/>
         <section className={classes.PaymentMethods}>
             <div className={classes.PaymentMethodsContent}>
-                <h2>Métodos de pago</h2>
-                <div>
+                <h2 className={classes.item1}>Métodos de pago</h2>
+                <div className={`${classes.PaymentMethod} ${classes.item2}`}>
                     <svg  width="100" height="100" viewBox="0 0 141.732 141.732"><g fill="#2566af"><path d="M62.935 89.571h-9.733l6.083-37.384h9.734zM45.014 52.187L35.735 77.9l-1.098-5.537.001.002-3.275-16.812s-.396-3.366-4.617-3.366h-15.34l-.18.633s4.691.976 10.181 4.273l8.456 32.479h10.141l15.485-37.385H45.014zM121.569 89.571h8.937l-7.792-37.385h-7.824c-3.613 0-4.493 2.786-4.493 2.786L95.881 89.571h10.146l2.029-5.553h12.373l1.14 5.553zm-10.71-13.224l5.114-13.99 2.877 13.99h-7.991zM96.642 61.177l1.389-8.028s-4.286-1.63-8.754-1.63c-4.83 0-16.3 2.111-16.3 12.376 0 9.658 13.462 9.778 13.462 14.851s-12.075 4.164-16.06.965l-1.447 8.394s4.346 2.111 10.986 2.111c6.642 0 16.662-3.439 16.662-12.799 0-9.72-13.583-10.625-13.583-14.851.001-4.227 9.48-3.684 13.645-1.389z"/></g><path d="M34.638 72.364l-3.275-16.812s-.396-3.366-4.617-3.366h-15.34l-.18.633s7.373 1.528 14.445 7.253c6.762 5.472 8.967 12.292 8.967 12.292z" fill="#e6a540"/><path fill="none" d="M0 0h141.732v141.732H0z"/></svg>
                 </div>
-                <div>
+                <div className={`${classes.PaymentMethod} ${classes.item3}`}>
                     <svg style={{width:'calc(999.2px/10)', height:'calc(776px/10)'}} version="1.1" x="0px" y="0px" viewBox="0 0 999.2 776" enable-background="new 0 0 999.2 776" >
                         <path id="XMLID_1775_"  d="M181.1,774.3v-51.5c0-19.7-12-32.6-32.6-32.6
                             c-10.3,0-21.5,3.4-29.2,14.6c-6-9.4-14.6-14.6-27.5-14.6c-8.6,0-17.2,2.6-24,12v-10.3h-18v82.4h18v-45.5c0-14.6,7.7-21.5,19.7-21.5
@@ -75,7 +90,7 @@ export default function Store() {
                         </g>
                     </svg>
                 </div>
-                <div>
+                <div className={`${classes.PaymentMethod} ${classes.item4}`}>
                     <svg style={{width:'calc(1280px/10)', height:'calc(339.345px/10)'}} viewBox="0 0 338.667 89.785" >
                         <g transform="translate(936.898 -21.779)">
                             <path clip-path="none" d="M-828.604 39.734c-.697 0-1.289.506-1.398 1.195l-8.068 51.165a1.31 1.31 0 0 0 1.294 1.513h9.568c.696 0 1.289-.507 1.398-1.195l2.37-15.025c.108-.688.701-1.195 1.398-1.195h8.699c10.164 0 18.792-7.416 20.368-17.465 1.589-10.134-6.328-18.971-17.549-18.993zm9.301 11.422h6.96c5.73 0 7.596 3.381 7.006 7.12-.59 3.747-3.488 6.507-9.031 6.507h-7.084zm45.788 3.478c-2.416.009-5.196.504-8.317 1.804-7.159 2.984-10.597 9.151-12.057 13.647 0 0-4.647 13.717 5.852 21.253 0 0 9.737 7.255 20.698-.447l-.189 1.203a1.31 1.31 0 0 0 1.292 1.513h9.083c.697 0 1.289-.507 1.398-1.195l5.525-35.038a1.31 1.31 0 0 0-1.292-1.515h-9.083c-.697 0-1.29.507-1.398 1.195l-.297 1.886s-3.967-4.333-11.216-4.306zm.297 11.067c1.043 0 1.997.144 2.853.419 3.919 1.258 6.141 5.023 5.498 9.104-.793 5.025-4.914 8.725-10.199 8.725-1.042 0-1.996-.143-2.853-.418-3.918-1.258-6.154-5.023-5.511-9.104.793-5.025 4.927-8.727 10.212-8.727z" fill="#003087"/>
@@ -88,7 +103,7 @@ export default function Store() {
                         </g>
                     </svg>
                 </div>
-                <div>
+                <div className={`${classes.PaymentMethod} ${classes.item5}`}>
                     <svg
                         version="1.1"
                         id="Capa_1"
@@ -197,19 +212,11 @@ export default function Store() {
         <section className={classes.Shipments}>
             <div className={classes.ShipmentsContent}>
                 <div className={classes.ShipmentsTitle}>
-                    <h3>envíos</h3>
+                    <img src={Shipments} />
+                    {/* <h3>{pageContent.shipments_title}</h3> */}
                 </div>
                 <div className={classes.ShipmentsText}>
-                    <p>
-                        Proin suscipit euismod nunc ac dignissim. Phasellus vel ipsum porta, interdum odio sit amet, 
-                        efficitur turpis. Sed quam lectus, dapibus sit amet laoreet in, commodo et nibh. Aliquam
-                         dignissim mi quis lectus aliquet, vitae feugiat mi mollis. Aenean sollicitudin ipsum eget 
-                         ligula mollis elementum. Curabitur pretium, orci quis faucibus blandit, sem velit elementum 
-                         lorem, ut luctus orci neque sed ante. Quisque euismod eu lorem sed vestibulum. Praesent 
-                         fermentum turpis viverra bibendum faucibus. Curabitur lectus tortor, viverra vitae tellus sit 
-                         amet, maximus porta magna. Nulla in lacinia elit, ut porta mi. Lorem ipsum dolor sit amet, 
-                         consectetur adipiscing elit.
-                    </p>
+                    <div dangerouslySetInnerHTML={createMarkup(pageContent.shipments_text)} />
                 </div>
             </div>
         </section>

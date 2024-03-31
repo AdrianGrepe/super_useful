@@ -1,25 +1,12 @@
 import React, {useEffect, useState} from 'react';
 
-import classes from './Carousel.module.css'
-
-
-// import bannerWeb from "../Videos/bannerWeb.mp4"
-
-import video1 from "../Videos/video1.mp4"
-import video2 from "../Videos/video2.mp4"
+import classes from './Carousel.module.css';
 
 
 const Carousel = ({
     title=""
 }) => {
-    const [feedback, setFeedback] = useState([
-        {
-            video:video1
-        },
-        {
-            video:video2
-        }
-    ])
+    const [feedback, setFeedback] = useState([])
     const [totalSlides, setTotalSlides] = useState()
     const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -80,22 +67,25 @@ const Carousel = ({
     });
 
     useEffect(() => {
-        // fetch(`https://accounting.linarys.com/v1/comments/`, { 
-        //     method: 'GET' 
-        // })
-        //     .then(data => data.json())
-        //     .then(data => {
-        //         setFeedback(
-        //             data.users
-        //         ); 
-                setTotalSlides(feedback.length)
+        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/carousel-videos?populate=*`, { 
+            method: 'GET' 
+        })
+            .then(data => data.json())
+            .then(data => {
+                console.log( typeof(data.data))
+                console.log( typeof(Object.entries(data.data) ))
+                setFeedback(
+                    data.data
+                ); 
+
+                setTotalSlides(Object.keys(data.data).length)
                 setFeedback((prevState, n=0) => [
                     ...prevState.map(
                         u => {return {...u, "comment_id":n++}}
                     )
                 ])
             
-            // })
+            })
             
     }, [])
 
@@ -108,7 +98,7 @@ const Carousel = ({
                
                 <div className={classes.CarouselItemContent}  >
                     <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay={false} controls loop={false}>
-                        <source src={feedback.video} type="video/mp4"/>
+                        <source src={feedback.attributes.promoVideo.data.attributes.url} type="video/mp4"/>
                         Your browser does not support the video tag.
                     </video>                    
                 </div>
@@ -120,7 +110,9 @@ const Carousel = ({
 
     return(
         <section className={classes.Carousel}>
-            <h2>{title}</h2>
+            <div className={classes.CarouselTitle}>
+                <h2>{title}</h2>
+            </div>
             <div 
                 className={classes.ContainerCarousel}
                 style={{

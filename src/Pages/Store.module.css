@@ -38,4 +38,41 @@
 
 .ShipmentsText {
     width: 70%;
+    display: flex;
+    align-items: center;
+}
+
+@media screen and (max-width: 991px) {
+    .PaymentMethodsContent {
+        display: grid;
+        grid-template-areas:
+        'title title'
+        'row1A row1B'
+        'row2A row2B';
+        gap: 15px;
+        padding-bottom: 25px;
+    }
+
+    .PaymentMethod {
+        display: flex;
+    }
+
+    .item1 { grid-area: title; text-align: center; }
+    .item2 { grid-area: row1A; justify-content: center;}
+    .item3 { grid-area: row1B; justify-content: center;}
+    .item4 { grid-area: row2A; justify-content: center;}
+    .item5 { grid-area: row2B; justify-content: center;}
+
+    .ShipmentsContent {
+        display: grid;
+        margin-bottom: 30px;
+        height: 50vh;
+        align-content: center;
+        justify-items: center;
+    }
+
+    .ShipmentsTitle {
+        width: unset;
+    }
+
 }
