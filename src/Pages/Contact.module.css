@@ -1,0 +1,66 @@
+.ContactContainer {
+    height: calc(100vh - 200px);
+    background-color: #313131;
+    color: white;
+    
+    max-width: 900px;
+    margin: auto;
+    margin-top: 300px;
+    
+}
+
+.ContactContainer form {
+    /* background-color: black; */
+    padding: 100px 50px 50px 50px;
+    width: 55%;
+    position: relative;
+}
+
+.ContactContainer form h1 {
+    background-color: #e1530f;
+    width: 350px;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 15px;
+    text-transform: uppercase;
+    position: absolute;
+    top:-50px;
+    right: calc((900px - 350px)/2);
+}
+
+.Contact {
+    display: flex;
+    background-color: black;
+    justify-content: space-evenly;
+    border-radius: 30px;
+    align-items: baseline;
+}
+.ContactInfo {
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+input, textarea {
+    background-color: #313131;
+    color: grey;
+    width: 100%;
+    border:2px solid grey;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+form button {
+    margin-top: 15px;
+    background-color: #e1530f;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 991px) {
+
+}

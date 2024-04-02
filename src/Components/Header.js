@@ -84,7 +84,7 @@ export default function Header(){
                     reclutamiento
                 </Link>
                 <Link
-                    to={`/`}
+                    to={`/contacto`}
                     className={classes.HeaderLink}
                     style={{color:location.pathname === "/contacto"?'#e1530f' : 'white'}}
                 >

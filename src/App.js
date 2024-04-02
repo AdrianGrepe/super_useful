@@ -7,6 +7,7 @@ import AboutUs from './Pages/AboutUs';
 import Store from './Pages/Store';
 import Wholesale from './Pages/Wholesale';
 import JoinUs from './Pages/JoinUs';
+import Contact from './Pages/Contact';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path='/tienda' element={<Store/>} />
         <Route path='/mayoreo' element={<Wholesale/>} />
         <Route path='/reclutamiento' element={<JoinUs/>} />
+        <Route path='/contacto' element={<Contact/>} />
 
 
       </Routes>
