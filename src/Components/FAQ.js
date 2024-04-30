@@ -22,9 +22,7 @@ export default function FAQ({FAQs={}, loadingContent}) {
                     }}
                     style={{cursor:'pointer'}}
                 >
-                    <div>
-                        {question}
-                    </div>
+                    <span dangerouslySetInnerHTML={createMarkup(question)} />
                     <button 
                         onClick={() => {
                             setQuestionVisible(!questionVisible)

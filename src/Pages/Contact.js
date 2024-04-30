@@ -49,7 +49,7 @@ export default function Contact() {
         //     return;
         // }
 
-        fetch("https://super-useful-cms-a844104e433f.herokuapp.com/api/requests", {
+        fetch("https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/requests", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

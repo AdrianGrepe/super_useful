@@ -67,7 +67,7 @@ const Carousel = ({
     });
 
     useEffect(() => {
-        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/carousel-videos?populate=*`, { 
+        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/carousel-videos?populate=*`, { 
             method: 'GET' 
         })
             .then(data => data.json())

@@ -69,7 +69,7 @@ const CurrentTeamCarousel = ({
     });
 
     useEffect(() => {
-        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/teams?populate=*`, { 
+        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/teams?populate=*`, { 
             method: 'GET' 
         })
             .then(data => data.json())

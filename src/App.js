@@ -23,8 +23,6 @@ function App() {
         <Route path='/mayoreo' element={<Wholesale/>} />
         <Route path='/reclutamiento' element={<JoinUs/>} />
         <Route path='/contacto' element={<Contact/>} />
-
-
       </Routes>
     </Router>
   );

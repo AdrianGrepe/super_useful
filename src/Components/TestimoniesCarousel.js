@@ -69,7 +69,7 @@ const TestimoniesCarousel = ({
     });
 
     useEffect(() => {
-        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/feedbacks?populate=*`, { 
+        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/feedbacks?populate=*`, { 
             method: 'GET' 
         })
             .then(data => data.json())
@@ -124,7 +124,10 @@ const TestimoniesCarousel = ({
             >
                 {
                     feedback.map(feedback => 
-                        <Comment id={feedback.comment_id} url={feedback.attributes.feedbackImage.data.attributes.url}/>
+                        <Comment 
+                            id={feedback.comment_id} 
+                            url={feedback.attributes.feedbackImage.data[0].attributes.url}
+                        />
                
                     )
                 }

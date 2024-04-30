@@ -22,7 +22,7 @@ export default function JoinUs() {
 
     useEffect(() => {
         setIsLoadingContent(true)
-        fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/be-part-of-our-team?populate=*`, { 
+        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/be-part-of-our-team?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
@@ -30,7 +30,7 @@ export default function JoinUs() {
                 setPageContent(data.data.attributes)
                 setIsLoadingContent(false)
             })
-        // fetch(`https://super-useful-cms-a844104e433f.herokuapp.com/api/faq-wholesales?populate=*`, { 
+        // fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/faq-wholesales?populate=*`, { 
         //     'Content-Type': 'application/json' , method: 'GET' 
         //     })
         //     .then(data => data.json())
