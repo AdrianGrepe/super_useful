@@ -9,11 +9,17 @@
     
 }
 
-.ContactContainer form {
+.ContactContainer form, .SubmittedMessage {
     /* background-color: black; */
     padding: 100px 50px 50px 50px;
     width: 55%;
     position: relative;
+    height: 400px;
+}
+
+.SubmittedMessage {
+    display: flex;
+    align-items: center;
 }
 
 .ContactContainer form h1 {
@@ -35,9 +41,15 @@
     border-radius: 30px;
     align-items: baseline;
 }
-.ContactInfo {
+.ContactInfoWeb {
     text-transform: uppercase;
     font-weight: 600;
+    margin: auto;
+    margin-left: 30px;
+}
+
+.ContactInfoMobile {
+    display: none;
 }
 
 input, textarea {
@@ -62,5 +74,37 @@ form button {
 }
 
 @media screen and (max-width: 991px) {
+    .ContactInfoWeb {
+        display: none;
 
+    }
+    .ContactInfoMobile {
+        text-transform: uppercase;
+        font-weight: 600;
+        margin: auto;
+        margin-left: 30px;
+        display: grid;
+        height: 80vh;
+        align-content: space-evenly;
+    }
+
+    .ContactContainer {
+        width: 90vw;
+        margin-top: 154px;
+        height: calc(200vh - 200px);
+    }
+
+    .ContactContainer form, .SubmittedMessage {
+        width: 75%;
+        padding: 50px 15px 15px 0px;
+    }
+
+    .ContactContainer form h1 {
+        width: 180px;
+        right: calc((100% - 180px) / 2);
+    }
+
+
+
+    
 }

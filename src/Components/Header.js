@@ -51,42 +51,42 @@ export default function Header(){
                 <Link
                     to={`/`}
                     className={classes.HeaderLink}
-                    style={{color:location.pathname === "/"?'#e1530f' : 'white'}}
+                    style={{color:location.pathname === "/"?'#e1530f' : 'white', fontWeight:location.pathname === "/"?'bold' : 'normal'}}
                 >
                     inicio
                 </Link>
                 <Link
                     to={`/nosotros`}
                     className={classes.HeaderLink}
-                    style={{color:location.pathname === "/nosotros"?'#e1530f' : 'white'}}
+                    style={{color:location.pathname === "/nosotros"?'#e1530f' : 'white', fontWeight:location.pathname === "/nosotros"?'bold' : 'normal'}}
                 >
                     nosotros
                 </Link>
                 <Link
                     to={`/tienda`}
                     className={classes.HeaderLink}
-                    style={{color:location.pathname === "/tienda"?'#e1530f' : 'white'}}
+                    style={{color:location.pathname === "/tienda"?'#e1530f' : 'white', fontWeight:location.pathname === "/tienda"?'bold' : 'normal'}}
                 >
                     tienda
                 </Link>
                 <Link
                     to={`/mayoreo`}
                     className={classes.HeaderLink}
-                    style={{color:location.pathname === "/mayoreo"?'#e1530f' : 'white'}}
+                    style={{color:location.pathname === "/mayoreo"?'#e1530f' : 'white', fontWeight:location.pathname === "/mayoreo"?'bold' : 'normal'}}
                 >
                     mayoreo
                 </Link>
                 <Link
                     to={`/reclutamiento`}
                     className={classes.HeaderLink}
-                    style={{color:location.pathname === "/reclutamiento"?'#e1530f' : 'white'}}
+                    style={{color:location.pathname === "/reclutamiento"?'#e1530f' : 'white', fontWeight:location.pathname === "/reclutamiento"?'bold' : 'normal'}}
                 >
                     reclutamiento
                 </Link>
                 <Link
                     to={`/contacto`}
                     className={classes.HeaderLink}
-                    style={{color:location.pathname === "/contacto"?'#e1530f' : 'white'}}
+                    style={{color:location.pathname === "/contacto"?'#e1530f' : 'white', fontWeight:location.pathname === "/contacto"?'bold' : 'normal'}}
                 >
                     contacto
                 </Link>

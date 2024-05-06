@@ -46,3 +46,20 @@
     margin-right: 30px;
     border-radius: 15px;
 }
+
+@media screen and (max-width: 991px) {
+    .Advantages{
+        display: grid;
+        justify-items: center;
+        width: 80vw;
+    }
+
+    .JoinSuperUsefull {
+        margin-top: 154px;
+        padding-top: 0px;
+    }
+
+    .JoinSuperUsefullTitle {
+        top: calc(-75px/2);
+    }
+}

@@ -21,7 +21,7 @@
 }
 
 .CarouselItemContent img{
-    width: 270px;
+    /* width: 270px; */
 }
 
 .CarouselItemContent p{
@@ -102,6 +102,6 @@
 
 @media screen and (max-width: 991px) {
     .CarouselItemContent img{
-        width: 90vw;
+        /* width: 90vw; */
     }
 }

@@ -20,7 +20,7 @@ const TextArea = (props) => {
       
                 
             />
-            <div style={{position:'absolute', bottom:'-20px'}} className={props.errorDiv}>
+            <div style={{position:'absolute'}} className={props.errorDiv}>
                 {props.errorMsg}
             </div>
             {/* <span style={{position:'absolute', bottom:'10px', right:'325px', fontSize:'11px'}}>{200 - props.writtenCharacters} characters</span> */}
