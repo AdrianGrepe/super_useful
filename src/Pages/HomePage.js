@@ -42,7 +42,7 @@ export default function HomePage() {
         <>
         <Header/>
         <section className={classes.bannerContainer}>
-            <video style={{width:'100vw', maxWidth:'1200px' }} controlsList="nofullscreen" autoPlay loop controls='' webkit-playsinline playsinline>
+            <video style={{width:'100vw', maxWidth:'1200px' }} controlsList="nofullscreen" autoPlay="true" loop="true" controls='' webkit-playsInLine="true" playsInLine="true">
                 <source src={bannerWeb} type="video/mp4"/>
                 Your browser does not support the video tag.
             </video>
