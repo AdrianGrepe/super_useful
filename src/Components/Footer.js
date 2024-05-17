@@ -4,8 +4,12 @@ import { Link } from 'react-router-dom';
 
 import classes from './Footer.module.css'
 import Logo from '../Images/Logo.webp';
+import { useEffect } from "react";
 
 export default function Footer() {
+    useEffect(() =>{
+        document.getElementById("year").innerHTML = new Date().getFullYear()
+    }, [])
     return(
         <footer className={classes.Footer}>
             <div className={classes.FooterContent} >
@@ -42,7 +46,7 @@ export default function Footer() {
                         55 4002 8524
                     </div>
                     <div className={classes.Copyright}>
-                        copyright © 2023 súper útil
+                        copyright © <span id="year"></span> súper útil
                     </div>
                
 
@@ -51,7 +55,7 @@ export default function Footer() {
                 <div className={classes.BrandingAndTerms}>
                     <img style={{}} src={Logo} alt="Logo" />
                     <Link
-                        to={`/`}
+                        to={`/terminos-y-condiciones`}
                         className={classes.HeaderLink}
                     >
                         terminos y condiciones

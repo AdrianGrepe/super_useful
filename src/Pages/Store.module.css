@@ -8,6 +8,31 @@
     background-color: #313131;
     padding-top: 100px;
     
+    
+}
+
+.StoreSearchTitle {
+    background-color: #e1530f;
+    width: 300px;
+    text-transform: uppercase;
+    color: white;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    border-radius: 15px;
+    margin: auto;
+    position: absolute;
+    right: calc((100% - 300px)/2);
+    top: calc(-75px/2);
+}
+
+.StoreSearchContent {
+    max-width: 700px;
+    margin: auto;
+    background-color: black;
+    padding: 100px 50px 50px 50px;
+    border-radius: 30px;
+    position: relative;
 }
 
 .StoreSearchControls {

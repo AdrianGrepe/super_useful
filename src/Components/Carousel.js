@@ -97,7 +97,7 @@ const Carousel = ({
             <div className={classes.CarouselItem}>
                
                 <div className={classes.CarouselItemContent}  >
-                    <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay={false} controls loop={false}>
+                    <video style={{width:'100vw', maxWidth:'1200px' }} autoPlay={false} controls controlsList="nofullscreen" loop={false} webkit-playsInLine="true" playsInLine="true">
                         <source src={feedback.attributes.promoVideo.data.attributes.url} type="video/mp4"/>
                         Your browser does not support the video tag.
                     </video>                    

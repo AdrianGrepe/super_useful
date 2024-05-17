@@ -37,7 +37,7 @@ export default function Store() {
             .then(data => data.json())
             .then(data => {
                 setPageContent(data.data.attributes)
-                setIsLoadingContent(false)
+                // setIsLoadingContent(false)
             })
         fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/faq-stores?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
@@ -46,7 +46,7 @@ export default function Store() {
             .then(data => {
                 setFAQs(data.data)
                 setQuestions(Object.keys(data.data).length)
-                setIsLoadingContent(false)
+                // setIsLoadingContent(false)
             })
         fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-brands`, { 
             'Content-Type': 'application/json' , method: 'GET' 
@@ -66,63 +66,81 @@ export default function Store() {
         <>
         <Header/>
         <section className={classes.StoreSearch}>
-            <div className={classes.StoreSearchControls}>
-                <Select  
-                    style={{width:'150px', marginBottom:'10px', position:'relative'}}
-                    selectedOption={selectedBrand}
-                    onSelected={(value) => {
-                        setSelectedBrand(value.attributes.brandName)
-                        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-brands?populate=*&filters[brandName][$startsWith]=${value.attributes.brandName}`, { 
-                            'Content-Type': 'application/json' , method: 'GET' 
-                            })
-                            .then(data => data.json())
-                            .then(data => {
-                                setSelectedBrandCars(data.data[0].attributes.car_models)
-                            })
-
-                    }}  
-        
-                    options={carBrands} 
-                />
-                <SelectCar
-                    disabled={selectedBrand==='Marca'?true:false}
-                    style={{width:'150px', marginBottom:'15px'}}
-                    selectedOption={selectedCar}
-                    onSelected={(value) => {
-                        console.log(value.attributes.model)
-                        setSelectedCar(value.attributes.model)
-                        // https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=500
-                        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
-                            'Content-Type': 'application/json' , method: 'GET' 
-                            })
-                            .then(data => data.json())
-                            .then(data => {
-                                console.log(data.data[0])
-                                console.log(data.data[0].attributes.car_cover.data)
-                                setSelectedCarPhoto(data.data[0].attributes.photo.data.attributes.url)
-                                setSelectedCarLink1(data.data[0].attributes.car_cover.data.attributes.mercadolibre_link)
-                            })
-
-                    }}  
-        
-                    options={selectedBrandCars} 
-                />
-            </div>
             
-            <div className={classes.StoreCurrentearch}>
+            <div className={classes.StoreSearchContent}>
+                <div className={classes.StoreSearchTitle}>
+                    <h2 style={{color:'white', textTransform:'uppercase', margin:'auto'}}>busca tu funda</h2>
+                </div>
                 {
-                    selectedCar === "Modelo"
+                    loadingContent
                     ?
-                    <></>
+                    <>
+                    <div style={{margin:'auto'}} class="loader"></div>
+                    </>
                     :
                     <>
-                    <div style={{display:'grid'}}>
-                        <img className={classes.StoreCurrentearchPhoto} src={selectedCarPhoto} />
-                        <a style={{color:'white'}} target="_blank" href={selectedCarLink1}>Compra en mercado libre</a>
+                    <div className={classes.StoreSearchControls}>
+                        <Select  
+                            style={{width:'150px', marginBottom:'10px', position:'relative'}}
+                            selectedOption={selectedBrand}
+                            onSelected={(value) => {
+                                setSelectedBrand(value.attributes.brandName)
+                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-brands?populate=*&filters[brandName][$startsWith]=${value.attributes.brandName}`, { 
+                                    'Content-Type': 'application/json' , method: 'GET' 
+                                    })
+                                    .then(data => data.json())
+                                    .then(data => {
+                                        setSelectedBrandCars(data.data[0].attributes.car_models)
+                                    })
+
+                            }}  
+                
+                            options={carBrands} 
+                        />
+                        <SelectCar
+                            disabled={selectedBrand==='Marca'?true:false}
+                            style={{width:'150px', marginBottom:'10px', position:'relative'}}
+                            selectedOption={selectedCar}
+                            onSelected={(value) => {
+                                console.log(value.attributes.model)
+                                setSelectedCar(value.attributes.model)
+                                // https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=500
+                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
+                                    'Content-Type': 'application/json' , method: 'GET' 
+                                    })
+                                    .then(data => data.json())
+                                    .then(data => {
+                                        console.log(data.data[0])
+                                        console.log(data.data[0].attributes.car_cover.data)
+                                        setSelectedCarPhoto(data.data[0].attributes.photo.data.attributes.url)
+                                        setSelectedCarLink1(data.data[0].attributes.car_cover.data.attributes.mercadolibre_link)
+                                    })
+
+                            }}  
+                
+                            options={selectedBrandCars} 
+                        />
+                    </div>
+                    
+                    <div className={classes.StoreCurrentearch}>
+                        {
+                            selectedCar === "Modelo"
+                            ?
+                            <></>
+                            :
+                            <>
+                            <div style={{display:'grid'}}>
+                                <img className={classes.StoreCurrentearchPhoto} src={selectedCarPhoto} />
+                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink1}>Compra en mercado libre</a>
+                            </div>
+                            </>
+                        }
                     </div>
                     </>
                 }
+                
             </div>
+            
         </section>
         <section className={classes.PaymentMethods}>
             <div className={classes.PaymentMethodsContent}>

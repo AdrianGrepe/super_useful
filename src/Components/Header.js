@@ -31,7 +31,10 @@ export default function Header(){
     return(
         <header className={classes.Header}>
         <div className={classes.ImageContainer}>
-            <img style={{}} src={LogoHeader } alt="HeaderLogo" />
+            {/* <Link to={`/`}> */}
+                <img style={{}} src={LogoHeader } alt="HeaderLogo" />
+            {/* </Link> */}
+            
         </div>
         {
                     window.innerWidth < 991
