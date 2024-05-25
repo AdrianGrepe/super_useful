@@ -5,6 +5,7 @@ import Footer from "../Components/Footer";
 import FAQ from "../Components/FAQ";
 import Select from "../Components/Select";
 import SelectCar from "../Components/SelectCar";
+import SelectMaterial from "../Components/SelectMaterial";
 
 import classes from './Store.module.css';
 
@@ -23,10 +24,22 @@ export default function Store() {
     const [pageContent, setPageContent] = useState({})
     const [carBrands, setCarBrands] = useState({})
     const [selectedBrand, setSelectedBrand] = useState("Marca")
+    const [selectedCover, setSelectedCover] = useState()
     const [selectedBrandCars, setSelectedBrandCars] = useState({})
+    const [coverMaterials, setCoverMaterials] = useState({})
+    const [selectedMaterial, setSelectedMaterial] = useState("Material")
     const [selectedCar, setSelectedCar] = useState("Modelo")
+    const [price, setPrice] = useState()
+
+
     const [selectedCarPhoto, setSelectedCarPhoto] = useState()
-    const [selectedCarLink1, setSelectedCarLink1] = useState()
+    const [selectedCarLink1, setSelectedCarLink1] = useState(null)
+    const [selectedCarLink2, setSelectedCarLink2] = useState(null)
+    const [selectedCarLink3, setSelectedCarLink3] = useState(null)
+    const [selectedCarLink4, setSelectedCarLink4] = useState(null)
+    const [selectedCarLink5, setSelectedCarLink5] = useState(null)
+    const [selectedCarLink6, setSelectedCarLink6] = useState(null)
+
    
 
     useEffect(() => {
@@ -54,6 +67,15 @@ export default function Store() {
             .then(data => data.json())
             .then(data => {
                 setCarBrands(Object.values(data.data))
+                console.log( Object.values(data.data))
+                setIsLoadingContent(false)
+            })
+        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/cover-materials`, { 
+            'Content-Type': 'application/json' , method: 'GET' 
+            })
+            .then(data => data.json())
+            .then(data => {
+                setCoverMaterials(Object.values(data.data))
                 console.log( Object.values(data.data))
                 setIsLoadingContent(false)
             })
@@ -85,6 +107,7 @@ export default function Store() {
                             selectedOption={selectedBrand}
                             onSelected={(value) => {
                                 setSelectedBrand(value.attributes.brandName)
+
                                 fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-brands?populate=*&filters[brandName][$startsWith]=${value.attributes.brandName}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
@@ -104,7 +127,7 @@ export default function Store() {
                             onSelected={(value) => {
                                 console.log(value.attributes.model)
                                 setSelectedCar(value.attributes.model)
-                                // https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=500
+                                // console.log(value)
                                 fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
@@ -112,26 +135,65 @@ export default function Store() {
                                     .then(data => {
                                         console.log(data.data[0])
                                         console.log(data.data[0].attributes.car_cover.data)
+                                        setSelectedCover(data.data[0].attributes.car_cover.data.attributes.internal_denomination)
                                         setSelectedCarPhoto(data.data[0].attributes.photo.data.attributes.url)
                                         setSelectedCarLink1(data.data[0].attributes.car_cover.data.attributes.mercadolibre_link)
+                                        setSelectedCarLink2(data.data[0].attributes.car_cover.data.attributes.amazon_link)
+                                        setSelectedCarLink3(data.data[0].attributes.car_cover.data.attributes.coppel_link)
+                                        setSelectedCarLink4(data.data[0].attributes.car_cover.data.attributes.walmart_link)
+                                        setSelectedCarLink5(data.data[0].attributes.car_cover.data.attributes.shein_link)
+                                        setSelectedCarLink6(data.data[0].attributes.car_cover.data.attributes.shein_temu)
                                     })
 
                             }}  
                 
                             options={selectedBrandCars} 
                         />
+                        <SelectMaterial  
+                            style={{width:'150px', marginBottom:'10px', position:'relative'}}
+                            selectedOption={selectedMaterial}
+                            onSelected={(value) => {
+                                console.log(value)
+                                setSelectedMaterial(value.attributes.material)
+                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/covers-prices?populate=*&filters%5Bcar_covers%5D%5Binternal_denomination%5D%5B$eq%5D=${selectedCover}&filters%5Bcover_materials%5D%5Bmaterial%5D%5B$eq%5D=${value.attributes.material}`, { 
+                                    'Content-Type': 'application/json' , method: 'GET' 
+                                    })
+                                    .then(data => data.json())
+                                    .then(data => {
+                                        console.log(data.data[0].attributes.price)
+                                        setPrice(data.data[0].attributes.price.toLocaleString('en-US', {style: 'currency', currency: 'USD',}))
+                                    })
+
+                            }}  
+                
+                            options={coverMaterials} 
+                        />
                     </div>
                     
                     <div className={classes.StoreCurrentearch}>
                         {
-                            selectedCar === "Modelo"
+                            selectedCar === "Modelo" || selectedMaterial === "Material"
                             ?
                             <></>
                             :
                             <>
-                            <div style={{display:'grid'}}>
+                            <div style={{display:'grid', position:'relative'}}>
+                                <h2 style={{color:'white'}}>{selectedBrand} {selectedCar}</h2>
+                                <div className={classes.PriceTag}>{price}</div>
                                 <img className={classes.StoreCurrentearchPhoto} src={selectedCarPhoto} />
-                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink1}>Compra en mercado libre</a>
+                                
+                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink1}>Compra en mercado libre</a>ç
+                                {
+                                    selectedCarLink2 !== null
+                                    ?
+                                    <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink2}>Compra en Amazon</a>
+                                    :
+                                    <></>
+                                }
+                                {/* <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink3}>Compra en Coppel</a>
+                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink4}>Compra en Walmart</a>
+                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink5}>Compra en Shein</a>
+                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink6}>Compra en Temu</a> */}
                             </div>
                             </>
                         }
