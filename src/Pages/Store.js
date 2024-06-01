@@ -10,6 +10,9 @@ import SelectMaterial from "../Components/SelectMaterial";
 import classes from './Store.module.css';
 
 import Shipments from '../Images/shipments.png';
+import Mercadolibre from '../Images/mercadolibre.svg'
+import YouTube from '../Images/YouTube.svg'
+import Search from "../Components/Search";
 
 
 export default function Store() {
@@ -30,6 +33,7 @@ export default function Store() {
     const [selectedMaterial, setSelectedMaterial] = useState("Material")
     const [selectedCar, setSelectedCar] = useState("Modelo")
     const [price, setPrice] = useState()
+    const [materialCharacteristics, setMaterialCharacteristics] =useState()
 
 
     const [selectedCarPhoto, setSelectedCarPhoto] = useState()
@@ -61,13 +65,13 @@ export default function Store() {
                 setQuestions(Object.keys(data.data).length)
                 // setIsLoadingContent(false)
             })
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-brands`, { 
+        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-brands?sort[1]=brandName:asc`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
             .then(data => {
                 setCarBrands(Object.values(data.data))
-                console.log( Object.values(data.data))
+                // console.log( Object.values(data.data))
                 setIsLoadingContent(false)
             })
         fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/cover-materials`, { 
@@ -76,7 +80,7 @@ export default function Store() {
             .then(data => data.json())
             .then(data => {
                 setCoverMaterials(Object.values(data.data))
-                console.log( Object.values(data.data))
+                // console.log( Object.values(data.data))
                 setIsLoadingContent(false)
             })
     }, [])
@@ -103,17 +107,19 @@ export default function Store() {
                     <>
                     <div className={classes.StoreSearchControls}>
                         <Select  
-                            style={{width:'150px', marginBottom:'10px', position:'relative'}}
+                            className={classes.CoverSearchSelect}
+                            
                             selectedOption={selectedBrand}
                             onSelected={(value) => {
                                 setSelectedBrand(value.attributes.brandName)
-
-                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-brands?populate=*&filters[brandName][$startsWith]=${value.attributes.brandName}`, { 
+                                // https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=&filters[car_brand][brandName][$eq]=honda
+                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=&sort[0]=model:asc&filters[car_brand][brandName][$eq]=${value.attributes.brandName}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
                                     .then(data => data.json())
                                     .then(data => {
-                                        setSelectedBrandCars(data.data[0].attributes.car_models)
+                                        setSelectedBrandCars(data.data)
+                                        // console.log(data)
                                     })
 
                             }}  
@@ -122,27 +128,20 @@ export default function Store() {
                         />
                         <SelectCar
                             disabled={selectedBrand==='Marca'?true:false}
-                            style={{width:'150px', marginBottom:'10px', position:'relative'}}
+                            className={classes.CoverSearchSelect}
+                            
                             selectedOption={selectedCar}
                             onSelected={(value) => {
-                                console.log(value.attributes.model)
+                                console.log(value)
+                             
                                 setSelectedCar(value.attributes.model)
-                                // console.log(value)
                                 fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
                                     .then(data => data.json())
                                     .then(data => {
-                                        console.log(data.data[0])
-                                        console.log(data.data[0].attributes.car_cover.data)
                                         setSelectedCover(data.data[0].attributes.car_cover.data.attributes.internal_denomination)
                                         setSelectedCarPhoto(data.data[0].attributes.photo.data.attributes.url)
-                                        setSelectedCarLink1(data.data[0].attributes.car_cover.data.attributes.mercadolibre_link)
-                                        setSelectedCarLink2(data.data[0].attributes.car_cover.data.attributes.amazon_link)
-                                        setSelectedCarLink3(data.data[0].attributes.car_cover.data.attributes.coppel_link)
-                                        setSelectedCarLink4(data.data[0].attributes.car_cover.data.attributes.walmart_link)
-                                        setSelectedCarLink5(data.data[0].attributes.car_cover.data.attributes.shein_link)
-                                        setSelectedCarLink6(data.data[0].attributes.car_cover.data.attributes.shein_temu)
                                     })
 
                             }}  
@@ -150,25 +149,36 @@ export default function Store() {
                             options={selectedBrandCars} 
                         />
                         <SelectMaterial  
-                            style={{width:'150px', marginBottom:'10px', position:'relative'}}
+                            
+                            className={classes.CoverSearchSelect}
                             selectedOption={selectedMaterial}
                             onSelected={(value) => {
-                                console.log(value)
+                                // console.log(value)
                                 setSelectedMaterial(value.attributes.material)
                                 fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/covers-prices?populate=*&filters%5Bcar_covers%5D%5Binternal_denomination%5D%5B$eq%5D=${selectedCover}&filters%5Bcover_materials%5D%5Bmaterial%5D%5B$eq%5D=${value.attributes.material}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
                                     .then(data => data.json())
                                     .then(data => {
-                                        console.log(data.data[0].attributes.price)
+                                        // console.log(data.data[0].attributes.price)
                                         setPrice(data.data[0].attributes.price.toLocaleString('en-US', {style: 'currency', currency: 'USD',}))
                                     })
+                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/marketplace-urls?populate=*&filters[cover_material][material][$eq]=${value.attributes.material}&filters[car_model][model][$eq]=${selectedCar}`, { 
+                                    'Content-Type': 'application/json' , method: 'GET' 
+                                    })
+                                    .then(data => data.json())
+                                    .then(data => {
+                                        console.log(data.data[0].attributes.url)
+                                        setSelectedCarLink1(data.data[0].attributes.url)
+                                        setMaterialCharacteristics(data.data[0].attributes.cover_material.data.attributes.description)
 
+                                    })
                             }}  
                 
                             options={coverMaterials} 
                         />
                     </div>
+                    
                     
                     <div className={classes.StoreCurrentearch}>
                         {
@@ -177,23 +187,24 @@ export default function Store() {
                             <></>
                             :
                             <>
-                            <div style={{display:'grid', position:'relative'}}>
-                                <h2 style={{color:'white'}}>{selectedBrand} {selectedCar}</h2>
-                                <div className={classes.PriceTag}>{price}</div>
-                                <img className={classes.StoreCurrentearchPhoto} src={selectedCarPhoto} />
-                                
-                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink1}>Compra en mercado libre</a>ç
-                                {
-                                    selectedCarLink2 !== null
-                                    ?
-                                    <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink2}>Compra en Amazon</a>
-                                    :
-                                    <></>
-                                }
-                                {/* <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink3}>Compra en Coppel</a>
-                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink4}>Compra en Walmart</a>
-                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink5}>Compra en Shein</a>
-                                <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink6}>Compra en Temu</a> */}
+                            <div style={{backgroundColor: '#ebebeb', padding:'15px'}} >
+                                <h2 style={{}}>Funda para {selectedBrand} {selectedCar} {selectedMaterial}</h2>
+                                <div className={classes.CurrentSearch} >
+                                    <div style={{display:'grid', position:'relative'}}>
+                                        <div className={classes.PriceTag}>{price}</div>
+                                        <img className={classes.StoreCurrentearchPhoto} src={selectedCarPhoto} />
+                                        <h3 style={{}}>Da click para comprar en:</h3>
+                                        <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink1}><img width={70} src={Mercadolibre}/></a>
+                                    </div>
+                                    <div className={classes.materialCharacteristics}>
+                                        <div style={{fontSize:'15px'}} dangerouslySetInnerHTML={createMarkup(materialCharacteristics)} />
+                                        <div>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
                             </div>
                             </>
                         }

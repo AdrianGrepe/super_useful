@@ -1,12 +1,56 @@
+.CoverSearchSelect {
+    width: 150px;
+    margin-bottom: 10px;
+    position: relative;
+    
+}
+
+.CoverSearchSelect ul {
+    width: 150px;
+
+}
+
+.CoverSearchSelect div:first-child {
+    padding: 15px;
+}
+
+.CoverSearchSelect div div:nth-child(2) {
+    padding: 16px;
+    background-color: #e1530f;
+    position: absolute;
+    right:-2px;
+    border-radius: 0 30px 30px 0;
+}
+
+.CurrentSearch {
+    display: flex;
+}
+
+
+
 .PriceTag{
     position: absolute;
-    bottom: 50px;
-    left: -10px;
+    /* bottom: 100px; */
+    /* left: -10px; */
+    top: 5%;
     background-color: #e1530f;
     color: white;
     font-size: 24px;
     padding: 10px 20px;
     border-radius: 0 15px 15px 0;
+}
+.materialCharacteristics p {
+    margin: 0;
+
+}
+
+.materialCharacteristics ul {
+    margin: 0;
+    padding-inline-start: 20px;
+}
+
+.materialCharacteristics {
+    padding-left: 10px;
 }
 
 .PaymentMethods {
@@ -104,6 +148,31 @@
 }
 
 @media screen and (max-width: 991px) {
+    .StoreSearch {
+        margin-top: 100px;
+    }
+    .CoverSearchSelect {
+        width: 100px;
+        margin-bottom: 10px;
+        position: relative;
+        font-size: 13px;
+    }
+    .CoverSearchSelect div:first-child {
+        padding: 5px;
+    }
+
+    .CoverSearchSelect div div:nth-child(2) {
+        padding: 6px;
+      
+    }
+    .CoverSearchSelect ul {
+        width: 100px;
+    
+    }
+    .CurrentSearch {
+        display: grid;
+        justify-items: center;
+    }
     .PaymentMethodsContent {
         display: grid;
         grid-template-areas:
@@ -134,6 +203,14 @@
 
     .ShipmentsTitle {
         width: unset;
+    }
+    .StoreSearchContent {
+        padding: 100px 25px 25px 25px;
+    }
+
+    .StoreSearchControls {
+        display: flex;
+        justify-content: space-between;
     }
 
 }

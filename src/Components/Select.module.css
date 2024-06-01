@@ -1,6 +1,7 @@
 .dropDownContainer {
-    width: 180px;
-    /* margin: 0 auto; */
+    width: 150px;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .dropDownHeader {
@@ -16,8 +17,9 @@
     justify-content: space-between;
     align-items: center;
     background-color: #fdfdfd;
-    width: 150px;
-    padding: 15px;
+    /* width: 150px; */
+    /* padding: 15px; */
+    
 }
 
 .dropDownListContainer {
@@ -39,8 +41,9 @@
     overflow-y: scroll;
     height: 180px;
     box-shadow: 0 2px 3px rgba(0, 0, 0, 0.15);
-    width: 183px;
+    /* width: 183px; */
     border-radius: 15px;
+    margin-top: 10px;
 
 }
 
