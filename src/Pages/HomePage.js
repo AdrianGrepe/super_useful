@@ -27,7 +27,7 @@ export default function HomePage() {
 
     useEffect(() => {
         setIsLoadingContent(true)
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/homepage?populate=*`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/homepage?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())

@@ -48,7 +48,7 @@ export default function Store() {
 
     useEffect(() => {
         setIsLoadingContent(true)
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/store?populate=*`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/store?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
@@ -56,7 +56,7 @@ export default function Store() {
                 setPageContent(data.data.attributes)
                 // setIsLoadingContent(false)
             })
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/faq-stores?populate=*`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/faq-stores?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
@@ -65,7 +65,7 @@ export default function Store() {
                 setQuestions(Object.keys(data.data).length)
                 // setIsLoadingContent(false)
             })
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-brands?sort[1]=brandName:asc`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-brands?sort[1]=brandName:asc`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
@@ -74,7 +74,7 @@ export default function Store() {
                 // console.log( Object.values(data.data))
                 setIsLoadingContent(false)
             })
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/cover-materials`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/cover-materials`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
@@ -112,8 +112,8 @@ export default function Store() {
                             selectedOption={selectedBrand}
                             onSelected={(value) => {
                                 setSelectedBrand(value.attributes.brandName)
-                                // https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=&filters[car_brand][brandName][$eq]=honda
-                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=&sort[0]=model:asc&filters[car_brand][brandName][$eq]=${value.attributes.brandName}`, { 
+                                // https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&filters[car_brand][brandName][$eq]=honda
+                                fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&sort[0]=model:asc&filters[car_brand][brandName][$eq]=${value.attributes.brandName}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
                                     .then(data => data.json())
@@ -135,7 +135,7 @@ export default function Store() {
                                 console.log(value)
                              
                                 setSelectedCar(value.attributes.model)
-                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
+                                fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
                                     .then(data => data.json())
@@ -155,7 +155,7 @@ export default function Store() {
                             onSelected={(value) => {
                                 // console.log(value)
                                 setSelectedMaterial(value.attributes.material)
-                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/covers-prices?populate=*&filters%5Bcar_covers%5D%5Binternal_denomination%5D%5B$eq%5D=${selectedCover}&filters%5Bcover_materials%5D%5Bmaterial%5D%5B$eq%5D=${value.attributes.material}`, { 
+                                fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/covers-prices?populate=*&filters%5Bcar_covers%5D%5Binternal_denomination%5D%5B$eq%5D=${selectedCover}&filters%5Bcover_materials%5D%5Bmaterial%5D%5B$eq%5D=${value.attributes.material}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
                                     .then(data => data.json())
@@ -163,7 +163,7 @@ export default function Store() {
                                         // console.log(data.data[0].attributes.price)
                                         setPrice(data.data[0].attributes.price.toLocaleString('en-US', {style: 'currency', currency: 'USD',}))
                                     })
-                                fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/marketplace-urls?populate=*&filters[cover_material][material][$eq]=${value.attributes.material}&filters[car_model][model][$eq]=${selectedCar}`, { 
+                                fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/marketplace-urls?populate=*&filters[cover_material][material][$eq]=${value.attributes.material}&filters[car_model][model][$eq]=${selectedCar}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
                                     })
                                     .then(data => data.json())

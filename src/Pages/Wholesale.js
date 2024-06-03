@@ -26,7 +26,7 @@ export default function Wholesale() {
 
     useEffect(() => {
         setIsLoadingContent(true)
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/wholesale?populate=*`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/wholesale?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
@@ -34,7 +34,7 @@ export default function Wholesale() {
                 setPageContent(data.data.attributes)
                 setIsLoadingContent(false)
             })
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/faq-wholesales?populate=*`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/faq-wholesales?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())

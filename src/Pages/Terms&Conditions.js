@@ -14,7 +14,7 @@ export default function TermsAndConditions() {
 
     useEffect(() => {
         setIsLoadingContent(true)
-        fetch(`https://super-useful-cms-mysql-3b678b46df5f.herokuapp.com/api/terms-and-condition?populate=*`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/terms-and-condition?populate=*`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
