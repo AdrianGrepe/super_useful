@@ -21,22 +21,22 @@ export default function Store() {
         return {__html: str};
     }
 
-    const [FAQs, setFAQs] = useState() 
-    const [questions, setQuestions] = useState()
-    const [loadingContent, setIsLoadingContent] = useState()
-    const [pageContent, setPageContent] = useState({})
-    const [carBrands, setCarBrands] = useState({})
-    const [selectedBrand, setSelectedBrand] = useState("Marca")
-    const [selectedCover, setSelectedCover] = useState()
-    const [selectedBrandCars, setSelectedBrandCars] = useState({})
-    const [coverMaterials, setCoverMaterials] = useState({})
-    const [selectedMaterial, setSelectedMaterial] = useState("Material")
-    const [selectedCar, setSelectedCar] = useState("Modelo")
-    const [price, setPrice] = useState()
-    const [materialCharacteristics, setMaterialCharacteristics] =useState()
+    const [FAQs, setFAQs] = useState() // 1
+    const [questions, setQuestions] = useState() // 2
+    const [loadingContent, setIsLoadingContent] = useState() // 3
+    const [pageContent, setPageContent] = useState({}) // 4
+    const [carBrands, setCarBrands] = useState({}) // 5
+    const [selectedBrand, setSelectedBrand] = useState("Marca") // 6
+    const [selectedCover, setSelectedCover] = useState() // 7
+    const [selectedBrandCars, setSelectedBrandCars] = useState({}) // 8
+    const [coverMaterials, setCoverMaterials] = useState({}) // 9
+    const [selectedMaterial, setSelectedMaterial] = useState("Material") // 10
+    const [selectedCar, setSelectedCar] = useState("Modelo") // 11
+    const [price, setPrice] = useState() // 12
+    const [materialCharacteristics, setMaterialCharacteristics] =useState() // 13
 
 
-    const [selectedCarPhoto, setSelectedCarPhoto] = useState()
+    const [selectedCarPhoto, setSelectedCarPhoto] = useState() // 14
     const [selectedCarLink1, setSelectedCarLink1] = useState(null)
     const [selectedCarLink2, setSelectedCarLink2] = useState(null)
     const [selectedCarLink3, setSelectedCarLink3] = useState(null)
@@ -133,7 +133,7 @@ export default function Store() {
                             selectedOption={selectedCar}
                             onSelected={(value) => {
                                 console.log(value)
-                             
+                                
                                 setSelectedCar(value.attributes.model)
                                 fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
                                     'Content-Type': 'application/json' , method: 'GET' 
@@ -177,6 +177,19 @@ export default function Store() {
                 
                             options={coverMaterials} 
                         />
+                        {
+                            selectedCar === "Modelo" || selectedMaterial === "Material"
+                            ?
+                            <></>
+                            :
+                            <button 
+                                className={classes.ResetSearch}
+                                onClick={() => {setSelectedBrand("Marca"); setSelectedCar("Modelo"); setSelectedMaterial("Material"); setSelectedCarPhoto(); setSelectedCarLink1(null)}}
+                            >
+                                Otra búsqueda
+                            </button>
+                        }
+                       
                     </div>
                     
                     
@@ -187,14 +200,25 @@ export default function Store() {
                             <></>
                             :
                             <>
-                            <div style={{backgroundColor: '#ebebeb', padding:'15px'}} >
+                            {
+                                selectedCarPhoto === undefined || selectedCarLink1 === null
+                                ?
+                                <div>
+                                    <h3 style={{color:'white'}}>No pudimos encontrar lo que estás buscando</h3>
+                                    <p style={{color:'white'}}>Ponte en conta to con nosotros para poder ayudarte</p>
+                                </div>
+                                :
+                                <div style={{backgroundColor: '#313131', padding:'15px', color:'white', borderRadius:'15px'}} >
                                 <h2 style={{}}>Funda para {selectedBrand} {selectedCar} {selectedMaterial}</h2>
                                 <div className={classes.CurrentSearch} >
                                     <div style={{display:'grid', position:'relative'}}>
                                         <div className={classes.PriceTag}>{price}</div>
                                         <img className={classes.StoreCurrentearchPhoto} src={selectedCarPhoto} />
-                                        <h3 style={{}}>Da click para comprar en:</h3>
-                                        <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink1}><img width={70} src={Mercadolibre}/></a>
+                                        <div className={classes.StoreBuyLinks }>
+                                            <h3 style={{}}>Da clic para comprar en:</h3>
+                                            <a style={{color:'white', display:'flex', justifyContent:'center'}} target="_blank" href={selectedCarLink1}><img width={70} src={Mercadolibre}/></a>
+                                        </div>
+                                        
                                     </div>
                                     <div className={classes.materialCharacteristics}>
                                         <div style={{fontSize:'15px'}} dangerouslySetInnerHTML={createMarkup(materialCharacteristics)} />
@@ -206,6 +230,8 @@ export default function Store() {
                                 </div>
 
                             </div>
+                            }
+                            
                             </>
                         }
                     </div>
