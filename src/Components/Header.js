@@ -28,6 +28,11 @@ export default function Header(){
         setNavbarOpen(!navbarOpen)
     }
 
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+
     return(
         <header className={classes.Header}>
         <div className={classes.ImageContainer}>
@@ -55,6 +60,7 @@ export default function Header(){
                     to={`/`}
                     className={classes.HeaderLink}
                     style={{color:location.pathname === "/"?'#e1530f' : 'white', fontWeight:location.pathname === "/"?'bold' : 'normal'}}
+                    onClick={() => {topFunction()}}
                 >
                     inicio
                 </Link>
@@ -62,6 +68,7 @@ export default function Header(){
                     to={`/nosotros`}
                     className={classes.HeaderLink}
                     style={{color:location.pathname === "/nosotros"?'#e1530f' : 'white', fontWeight:location.pathname === "/nosotros"?'bold' : 'normal'}}
+                    onClick={() => {topFunction()}}
                 >
                     nosotros
                 </Link>
@@ -69,6 +76,7 @@ export default function Header(){
                     to={`/tienda`}
                     className={classes.HeaderLink}
                     style={{color:location.pathname === "/tienda"?'#e1530f' : 'white', fontWeight:location.pathname === "/tienda"?'bold' : 'normal'}}
+                    onClick={() => {topFunction()}}
                 >
                     tienda
                 </Link>
@@ -76,6 +84,7 @@ export default function Header(){
                     to={`/mayoreo`}
                     className={classes.HeaderLink}
                     style={{color:location.pathname === "/mayoreo"?'#e1530f' : 'white', fontWeight:location.pathname === "/mayoreo"?'bold' : 'normal'}}
+                    onClick={() => {topFunction()}}
                 >
                     mayoreo
                 </Link>
@@ -83,6 +92,7 @@ export default function Header(){
                     to={`/reclutamiento`}
                     className={classes.HeaderLink}
                     style={{color:location.pathname === "/reclutamiento"?'#e1530f' : 'white', fontWeight:location.pathname === "/reclutamiento"?'bold' : 'normal'}}
+                    onClick={() => {topFunction()}}
                 >
                     reclutamiento
                 </Link>
@@ -90,6 +100,7 @@ export default function Header(){
                     to={`/contacto`}
                     className={classes.HeaderLink}
                     style={{color:location.pathname === "/contacto"?'#e1530f' : 'white', fontWeight:location.pathname === "/contacto"?'bold' : 'normal'}}
+                    onClick={() => {topFunction()}}
                 >
                     contacto
                 </Link>

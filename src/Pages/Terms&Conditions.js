@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "../Components/Header";
 import Footer from "../Components/Footer";
+import classes from './Terms&Conditions.module.css';
 
 export default function TermsAndConditions() {
 
@@ -27,7 +28,7 @@ export default function TermsAndConditions() {
     return (
         <>
         <Header/>
-        <section style={{minHeight:'100vh', color:'white', maxWidth:'1200px', margin:'auto', marginTop:'250px'}}>
+        <section className={classes.Container}>
             <h1 style={{margin:'50px 0'}}>{pageContent.title}</h1>
             <div dangerouslySetInnerHTML={createMarkup(pageContent.text)} />
         </section>

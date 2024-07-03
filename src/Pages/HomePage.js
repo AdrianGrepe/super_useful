@@ -8,6 +8,8 @@ import TestimoniesCarousel from "../Components/TestimoniesCarousel";
 import Footer from "../Components/Footer";
 
 import bannerWeb from "../Videos/bannerWeb.mp4"
+import bannerButtonImg from "../Images/bannerButtonImg.svg"
+import { Link } from 'react-router-dom';
 
 import WholesalesBanner from '../Images/WholesalesBanner.png';
 
@@ -21,6 +23,7 @@ export default function HomePage() {
 
     const [loadingContent, setIsLoadingContent] = useState()
     const [pageContent, setPageContent] = useState({})
+    const [totalSales, setTotalSales] = useState({})
 
 
    
@@ -35,6 +38,21 @@ export default function HomePage() {
                 setPageContent(data.data.attributes)
                 setIsLoadingContent(false)
             })
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/total-sale`, { 
+            'Content-Type': 'application/json' , method: 'GET' 
+            })
+            .then(data => data.json())
+            .then(data => {
+                setTotalSales(data.data.attributes.sales)
+                setIsLoadingContent(false)
+                console.log(data.data.attributes.sales.charAt(0))
+                console.log(data.data.attributes.sales.charAt(1))
+                console.log(data.data.attributes.sales.charAt(2))
+                console.log(data.data.attributes.sales.charAt(3))
+                console.log(data.data.attributes.sales.length)
+            })
+    
+
     }, [])
 
     
@@ -46,6 +64,10 @@ export default function HomePage() {
                 <source src={bannerWeb} type="video/mp4"/>
                 Your browser does not support the video tag.
             </video>
+            <Link to={`/tienda`} className={classes.bannerCallToAction}>
+                <img src={bannerButtonImg} />
+                <span style={{marginRight:'15px'}}>Comprar</span>
+            </Link>
         </section>
         <section>
             <Carousel title="Conoce los productos Súper Útil"/>
@@ -58,13 +80,177 @@ export default function HomePage() {
                 <div>
                     <h2 style={{color:'white', textTransform:'capitalize', fontSize:'36px', margin:'0'}}>nuestras ventas</h2>
                 </div>
+                
                 <div className={classes.salesCounter} >
-                    <span>0</span>
-                    <span>0</span>
-                    <span>3</span>
-                    <span>4</span>
-                    <span>2</span>
-                    <span>8</span>
+                    {
+                      totalSales.length >= 7
+                      ?
+                      <span className={classes}>Más de</span>
+                      :
+                      <></>  
+                    }
+                    <span>
+                    {(() => {
+                        if(totalSales.length >= 7) {
+                            return (
+                                <>9</>
+                            )
+                        } else if (totalSales.length === 6) {
+                            return (
+                                <>{totalSales.charAt(0)}</>
+                            )
+                        } else {
+                            return (
+                                <>0</>
+                            )
+                        }
+                    })()}
+                    </span>
+                    <span>
+                    {(() => {
+                        if(totalSales.length >= 7) {
+                            return (
+                                <>9</>
+                            )
+                        } else if (totalSales.length === 6) {
+                            return (
+                                <>{totalSales.charAt(1)}</>
+                            )
+                        } else if (totalSales.length === 5) {
+                            return (
+                                <>{totalSales.charAt(0)}</>
+                            )
+                        } else {
+                            return (
+                                <>0</>
+                            )
+                        }
+                    })()}
+                    </span>
+                    <span>  
+                    {(() => {
+                        if(totalSales.length >= 7) {
+                            return (
+                                <>9</>
+                            )
+                        }else if (totalSales.length === 6) {
+                            return (
+                                <>{totalSales.charAt(2)}</>
+                            )
+                        } else if (totalSales.length === 5) {
+                            return (
+                                <>{totalSales.charAt(1)}</>
+                            )
+                        } else if (totalSales.length === 4) {
+                            return (
+                                <>{totalSales.charAt(0)}</>
+                            )
+                        } else {
+                            return (
+                                <>0</>
+                            )
+                        }
+                    })()}
+                    </span>
+                    <span>
+                    {(() => {
+                        if(totalSales.length >= 7) {
+                            return (
+                                <>9</>
+                            )
+                        }else if (totalSales.length === 6) {
+                            return (
+                                <>{totalSales.charAt(3)}</>
+                            )
+                        } else if (totalSales.length === 5) {
+                            return (
+                                <>{totalSales.charAt(2)}</>
+                            )
+                        } else if (totalSales.length === 4) {
+                            return (
+                                <>{totalSales.charAt(1)}</>
+                            )
+                        }else if (totalSales.length === 3) {
+                            return (
+                                <>{totalSales.charAt(0)}</>
+                            )
+                        } else {
+                            return (
+                                <>0</>
+                            )
+                        }
+                    })()}
+                    </span>
+                    <span>
+                    {(() => {
+                        if(totalSales.length >= 7) {
+                            return (
+                                <>9</>
+                            )
+                        }else if (totalSales.length === 6) {
+                            return (
+                                <>{totalSales.charAt(4)}</>
+                            )
+                        } else if (totalSales.length === 5) {
+                            return (
+                                <>{totalSales.charAt(3)}</>
+                            )
+                        } else if (totalSales.length === 4) {
+                            return (
+                                <>{totalSales.charAt(2)}</>
+                            )
+                        }else if (totalSales.length === 3) {
+                            return (
+                                <>{totalSales.charAt(1)}</>
+                            )
+                        }else if (totalSales.length === 2) {
+                            return (
+                                <>{totalSales.charAt(0)}</>
+                            )
+                        } else {
+                            return (
+                                <>0</>
+                            )
+                        }
+                    })()}
+                    </span>
+                    <span>
+                    {(() => {
+                        if(totalSales.length >= 7) {
+                            return (
+                                <>9</>
+                            )
+                        }else if (totalSales.length === 6) {
+                            return (
+                                <>{totalSales.charAt(5)}</>
+                            )
+                        } else if (totalSales.length === 5) {
+                            return (
+                                <>{totalSales.charAt(4)}</>
+                            )
+                        } else if (totalSales.length === 4) {
+                            return (
+                                <>{totalSales.charAt(3)}</>
+                            )
+                        }else if (totalSales.length === 3) {
+                            return (
+                                <>{totalSales.charAt(2)}</>
+                            )
+                        }else if (totalSales.length === 2) {
+                            return (
+                                <>{totalSales.charAt(1)}</>
+                            )
+                        } else if (totalSales.length === 1) {
+                            return (
+                                <>{totalSales.charAt(0)}</>
+                            )
+                        } else {
+                            return (
+                                <>0</>
+                            )
+                        }
+                    })()}
+                    </span>
                 </div>
             </div>
         </section>

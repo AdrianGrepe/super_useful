@@ -5,12 +5,39 @@
     background-color: #313131;
     margin-top: 200px;
     margin-bottom: 50px;
+    position: relative;
+}
+
+.bannerCallToAction {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    background-color: #e1530f;
+    border: none;
+    color: white;
+    text-transform: uppercase;
+    padding: 0px;
+    border-radius: 37px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 150px;
+    top: 160px;
+    left: calc((100vw -  1050px)/2);
+    text-decoration: none;
 }
 
 .SalesCounter {
     height: 175px;
     width: 100vw;
     background-color: #e1530f;
+}
+
+.CounterOverflow {
+    color: white;
+    padding: 0;
+    background-color: unset;
+    font-size: small;
 }
 
 .SalesCounterContent {
@@ -90,6 +117,12 @@
     .bannerContainer {
         margin-top: 125px;
         margin-bottom: 50px;
+    }
+
+    .bannerCallToAction {
+        width: 150px;
+        top:55px;
+        left: 20px;
     }
 
     .SalesCounterContent {

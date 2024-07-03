@@ -105,78 +105,81 @@ export default function Store() {
                     </>
                     :
                     <>
-                    <div className={classes.StoreSearchControls}>
-                        <Select  
-                            className={classes.CoverSearchSelect}
-                            
-                            selectedOption={selectedBrand}
-                            onSelected={(value) => {
-                                setSelectedBrand(value.attributes.brandName)
-                                // https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&filters[car_brand][brandName][$eq]=honda
-                                fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&sort[0]=model:asc&filters[car_brand][brandName][$eq]=${value.attributes.brandName}`, { 
-                                    'Content-Type': 'application/json' , method: 'GET' 
-                                    })
-                                    .then(data => data.json())
-                                    .then(data => {
-                                        setSelectedBrandCars(data.data)
-                                        // console.log(data)
-                                    })
-
-                            }}  
-                
-                            options={carBrands} 
-                        />
-                        <SelectCar
-                            disabled={selectedBrand==='Marca'?true:false}
-                            className={classes.CoverSearchSelect}
-                            
-                            selectedOption={selectedCar}
-                            onSelected={(value) => {
-                                console.log(value)
+                    <div >
+                        <div className={classes.StoreSearchControls}>
+                            <Select  
+                                className={classes.CoverSearchSelect}
                                 
-                                setSelectedCar(value.attributes.model)
-                                fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
-                                    'Content-Type': 'application/json' , method: 'GET' 
-                                    })
-                                    .then(data => data.json())
-                                    .then(data => {
-                                        setSelectedCover(data.data[0].attributes.car_cover.data.attributes.internal_denomination)
-                                        setSelectedCarPhoto(data.data[0].attributes.photo.data.attributes.url)
-                                    })
+                                selectedOption={selectedBrand}
+                                onSelected={(value) => {
+                                    setSelectedBrand(value.attributes.brandName)
+                                    // https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&filters[car_brand][brandName][$eq]=honda
+                                    fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&sort[0]=model:asc&filters[car_brand][brandName][$eq]=${value.attributes.brandName}`, { 
+                                        'Content-Type': 'application/json' , method: 'GET' 
+                                        })
+                                        .then(data => data.json())
+                                        .then(data => {
+                                            setSelectedBrandCars(data.data)
+                                            // console.log(data)
+                                        })
 
-                            }}  
-                
-                            options={selectedBrandCars} 
-                        />
-                        <SelectMaterial  
-                            
-                            className={classes.CoverSearchSelect}
-                            selectedOption={selectedMaterial}
-                            onSelected={(value) => {
-                                // console.log(value)
-                                setSelectedMaterial(value.attributes.material)
-                                fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/covers-prices?populate=*&filters%5Bcar_covers%5D%5Binternal_denomination%5D%5B$eq%5D=${selectedCover}&filters%5Bcover_materials%5D%5Bmaterial%5D%5B$eq%5D=${value.attributes.material}`, { 
-                                    'Content-Type': 'application/json' , method: 'GET' 
-                                    })
-                                    .then(data => data.json())
-                                    .then(data => {
-                                        // console.log(data.data[0].attributes.price)
-                                        setPrice(data.data[0].attributes.price.toLocaleString('en-US', {style: 'currency', currency: 'USD',}))
-                                    })
-                                fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/marketplace-urls?populate=*&filters[cover_material][material][$eq]=${value.attributes.material}&filters[car_model][model][$eq]=${selectedCar}`, { 
-                                    'Content-Type': 'application/json' , method: 'GET' 
-                                    })
-                                    .then(data => data.json())
-                                    .then(data => {
-                                        console.log(data.data[0].attributes.url)
-                                        setSelectedCarLink1(data.data[0].attributes.url)
-                                        setMaterialCharacteristics(data.data[0].attributes.cover_material.data.attributes.description)
+                                }}  
+                    
+                                options={carBrands} 
+                            />
+                            <SelectCar
+                                disabled={selectedBrand==='Marca'?true:false}
+                                className={classes.CoverSearchSelect}
+                                
+                                selectedOption={selectedCar}
+                                onSelected={(value) => {
+                                    console.log(value)
+                                    
+                                    setSelectedCar(value.attributes.model)
+                                    fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=*&filters[model][$eq]=${value.attributes.model}`, { 
+                                        'Content-Type': 'application/json' , method: 'GET' 
+                                        })
+                                        .then(data => data.json())
+                                        .then(data => {
+                                            setSelectedCover(data.data[0].attributes.car_cover.data.attributes.internal_denomination)
+                                            setSelectedCarPhoto(data.data[0].attributes.photo.data.attributes.url)
+                                        })
 
-                                    })
-                            }}  
-                
-                            options={coverMaterials} 
-                        />
+                                }}  
+                    
+                                options={selectedBrandCars} 
+                            />
+                            <SelectMaterial  
+                                
+                                className={classes.CoverSearchSelect}
+                                selectedOption={selectedMaterial}
+                                onSelected={(value) => {
+                                    // console.log(value)
+                                    setSelectedMaterial(value.attributes.material)
+                                    fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/covers-prices?populate=*&filters%5Bcar_covers%5D%5Binternal_denomination%5D%5B$eq%5D=${selectedCover}&filters%5Bcover_materials%5D%5Bmaterial%5D%5B$eq%5D=${value.attributes.material}`, { 
+                                        'Content-Type': 'application/json' , method: 'GET' 
+                                        })
+                                        .then(data => data.json())
+                                        .then(data => {
+                                            // console.log(data.data[0].attributes.price)
+                                            setPrice(data.data[0].attributes.price.toLocaleString('en-US', {style: 'currency', currency: 'USD',}))
+                                        })
+                                    fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/marketplace-urls?populate=*&filters[cover_material][material][$eq]=${value.attributes.material}&filters[car_model][model][$eq]=${selectedCar}`, { 
+                                        'Content-Type': 'application/json' , method: 'GET' 
+                                        })
+                                        .then(data => data.json())
+                                        .then(data => {
+                                            console.log(data.data[0].attributes.url)
+                                            setSelectedCarLink1(data.data[0].attributes.url)
+                                            setMaterialCharacteristics(data.data[0].attributes.cover_material.data.attributes.description)
+
+                                        })
+                                }}  
+                    
+                                options={coverMaterials} 
+                            />
+                        </div>
+                        <div style={{display:'flex', margin:'15px 0', justifyContent:'center'}}>
                         {
                             selectedCar === "Modelo" || selectedMaterial === "Material"
                             ?
@@ -189,6 +192,7 @@ export default function Store() {
                                 Otra búsqueda
                             </button>
                         }
+                        </div>
                        
                     </div>
                     
@@ -203,9 +207,9 @@ export default function Store() {
                             {
                                 selectedCarPhoto === undefined || selectedCarLink1 === null
                                 ?
-                                <div>
+                                <div style={{textAlign:'center'}}>
                                     <h3 style={{color:'white'}}>No pudimos encontrar lo que estás buscando</h3>
-                                    <p style={{color:'white'}}>Ponte en conta to con nosotros para poder ayudarte</p>
+                                    <p style={{color:'white'}}>Ponte en contacto con nosotros para poder ayudarte.</p>
                                 </div>
                                 :
                                 <div style={{backgroundColor: '#313131', padding:'15px', color:'white', borderRadius:'15px'}} >
