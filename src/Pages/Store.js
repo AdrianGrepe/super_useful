@@ -150,7 +150,7 @@ export default function Store() {
                                 options={selectedBrandCars} 
                             />
                             <SelectMaterial  
-                                
+                                disabled={selectedCar==='Modelo'?true:false}
                                 className={classes.CoverSearchSelect}
                                 selectedOption={selectedMaterial}
                                 onSelected={(value) => {
