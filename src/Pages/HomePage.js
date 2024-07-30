@@ -9,6 +9,7 @@ import Footer from "../Components/Footer";
 
 import bannerWeb from "../Videos/bannerWeb.mp4"
 import bannerButtonImg from "../Images/bannerButtonImg.svg"
+
 import { Link } from 'react-router-dom';
 
 import WholesalesBanner from '../Images/WholesalesBanner.png';
@@ -268,6 +269,7 @@ export default function HomePage() {
         <section>
             <TestimoniesCarousel title={"testimonios"}/>
         </section>
+       
         <Footer/>
         </>
     )

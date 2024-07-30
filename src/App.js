@@ -10,6 +10,8 @@ import JoinUs from './Pages/JoinUs';
 import Contact from './Pages/Contact';
 import TermsAndConditions from './Pages/Terms&Conditions';
 
+import Chats from './Components/Chats';
+
 
 function App() {
 
@@ -26,6 +28,7 @@ function App() {
         <Route path='/contacto' element={<Contact/>} />
         <Route path='/terminos-y-condiciones' element={<TermsAndConditions/>} />
       </Routes>
+      <Chats/>
     </Router>
   );
 }
