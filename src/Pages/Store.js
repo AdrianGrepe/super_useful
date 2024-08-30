@@ -65,7 +65,7 @@ export default function Store() {
                 setQuestions(Object.keys(data.data).length)
                 // setIsLoadingContent(false)
             })
-        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-brands?sort[1]=brandName:asc`, { 
+        fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-brands?sort[1]=brandName:asc&pagination[pageSize]=100`, { 
             'Content-Type': 'application/json' , method: 'GET' 
             })
             .then(data => data.json())
@@ -114,7 +114,7 @@ export default function Store() {
                                 onSelected={(value) => {
                                     setSelectedBrand(value.attributes.brandName)
                                     // https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&filters[car_brand][brandName][$eq]=honda
-                                    fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&sort[0]=model:asc&filters[car_brand][brandName][$eq]=${value.attributes.brandName}`, { 
+                                    fetch(`https://super-useful-strapi-0bbdc58e284a.herokuapp.com/api/car-models?populate=&sort[0]=model:asc&filters[car_brand][brandName][$eq]=${value.attributes.brandName}&pagination[pageSize]=100`, { 
                                         'Content-Type': 'application/json' , method: 'GET' 
                                         })
                                         .then(data => data.json())
