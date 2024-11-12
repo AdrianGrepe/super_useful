@@ -43,7 +43,7 @@ export default function Footer() {
                         contacto@superutil.mx
                     </div>
                     <div className={classes.Phone}>
-                        55 4002 8524
+                        55 4002 8424
                     </div>
                     <div className={classes.Copyright}>
                         copyright © <span id="year"></span> súper útil
