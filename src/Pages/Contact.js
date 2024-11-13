@@ -137,7 +137,7 @@ export default function Contact() {
                     <div>
                         <div style={{display:'flex'}}>
                             <img src={phoneLogo} />
-                            <span>55 4002 8524</span>
+                            <span>55 4002 8424</span>
                         </div>
                         <div style={{display:'flex'}}>
                             <img src={emailLogo} />
