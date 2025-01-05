@@ -65,10 +65,10 @@ export default function HomePage() {
                 <source src={bannerWeb} type="video/mp4"/>
                 Your browser does not support the video tag.
             </video>
-            <Link to={`/tienda`} className={classes.bannerCallToAction}>
-                <img src={bannerButtonImg} />
-                <span style={{marginRight:'15px'}}>Comprar</span>
-            </Link>
+            <a href="https://www.tienda.superutil.mx/" target="_blank" rel="noopener noreferrer" className={classes.bannerCallToAction}>
+    <img src={bannerButtonImg} />
+    <span style={{ marginRight: '15px' }}>Comprar</span>
+</a>
         </section>
         <section>
             <Carousel title="Conoce los productos Súper Útil"/>

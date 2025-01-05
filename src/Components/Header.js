@@ -72,14 +72,26 @@ export default function Header(){
                 >
                     nosotros
                 </Link>
-                <Link
+                {/* <Link
                     to={`/tienda`}
                     className={classes.HeaderLink}
                     style={{color:location.pathname === "/tienda"?'#e1530f' : 'white', fontWeight:location.pathname === "/tienda"?'bold' : 'normal'}}
                     onClick={() => {topFunction()}}
                 >
                     tienda
-                </Link>
+                </Link> */}
+
+                <a
+                    href="https://www.tienda.superutil.mx/"
+                    className={classes.HeaderLink}
+                    style={{color:location.pathname === "/tienda"?'#e1530f' : 'white', fontWeight:location.pathname === "/tienda"?'bold' : 'normal'}}
+                    onClick={() => {topFunction()}}
+                    target="_blank" // Esto abre el enlace en una nueva pestaña
+                    rel="noopener noreferrer" // Esto es por seguridad al usar target="_blank"
+                >
+                    tienda
+                </a>
+
                 <Link
                     to={`/mayoreo`}
                     className={classes.HeaderLink}
