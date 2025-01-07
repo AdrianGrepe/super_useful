@@ -145,7 +145,7 @@ export default function Contact() {
                         </div>
                         <div style={{display:'flex'}}>
                             <img height={"21px"} src={locationLogo} />
-                            <span>avenida independencia <br/> #1320, Toluca <br/> Estado de México</span>
+                            <span>Av.Alfredo del Mazo #539, col san Juan Buenavista, <br/> Toluca, Estado de México. Cp. 50060</span>
                         </div>
                     </div>
                     <div >
@@ -227,7 +227,7 @@ export default function Contact() {
                 <div>
                     <div style={{display:'flex'}}>
                         <img src={phoneLogo} />
-                        <span>55 4002 8524</span>
+                        <span>55 4002 8424</span>
                     </div>
                     <div style={{display:'flex'}}>
                         <img src={emailLogo} />
@@ -235,7 +235,7 @@ export default function Contact() {
                     </div>
                     <div style={{display:'flex'}}>
                         <img height={"21px"} src={locationLogo} />
-                        <span>avenida independencia <br/> #1320, Toluca <br/> Estado de México</span>
+                        <span>Av.Alfredo del Mazo #539, col san Juan Buenavista, <br/> Toluca, Estado de México. Cp. 50060</span>
                     </div>
                 </div>
                 <div >

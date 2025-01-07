@@ -7,9 +7,11 @@ const mapContainerStyle = {
   height: '300px',
 };
 const center = {
-  lat: 19.292387, // default latitude
-  lng: -99.633323, // default longitude
+  lat: 19.300604, // default latitude
+  lng: -99.627835, // default longitude
 };
+
+// 19.300604, -99.627835
 
 const Map = () => {
   const { isLoaded, loadError } = useLoadScript({
